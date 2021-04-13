@@ -1,0 +1,25 @@
+﻿<UserControl x:Class="Messil.SideBarControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:core="clr-namespace:Messil.Core;assembly=Messil.Core"             
+             xmlns:local="clr-namespace:Messil"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="48">
+    <UserControl.Template>
+        <ControlTemplate>
+            <Border Background="{StaticResource ForegroundVeryLightBrush}">
+                <Grid>
+                    <StackPanel>
+                        <Button Style="{StaticResource SidebarButton}" Content="{StaticResource FontAwesomeUserIcon}" />
+                        <Button Style="{StaticResource SidebarButton}" Content="{StaticResource FontAwesomeChatIcon}" />
+                        <Button Style="{StaticResource SidebarButton}" Content="{StaticResource FontAwesomeMailIcon}" />
+                        <Button Style="{StaticResource SidebarButton}" Content="{StaticResource FontAwesomeSettingsIcon}" />
+                    </StackPanel>
+                    <Button Style="{StaticResource SidebarButton}" Content="{StaticResource FontAwesomeSigOutIcon}" VerticalAlignment="Bottom"/>
+                </Grid>
+            </Border>
+        </ControlTemplate>
+    </UserControl.Template>
+</UserControl>

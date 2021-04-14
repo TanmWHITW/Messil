@@ -20,7 +20,7 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Window}">
                         <!-- Outer border with the dropshadow margin -->
-                        <Border Padding="{Binding OuterMarginSizeThickness, FallbackValue=10}">
+                        <Border Margin="{Binding OuterMarginSizeThickness, FallbackValue=10}">
 
                             <!-- Main window outline -->
                             <Grid>
@@ -90,7 +90,7 @@
 
                                     </Grid>
 
-                                    <Border Grid.Row="1" Padding="{Binding InnerContentPadding, FallbackValue=0}">
+                                    <Border Grid.Row="1" Padding="{Binding InnerContentPadding, FallbackValue=0}" ClipToBounds="True">
                                         <ContentPresenter Content="{TemplateBinding Content}" />
                                     </Border>
                                 </Grid>
@@ -113,32 +113,40 @@
     </WindowChrome.WindowChrome>
 
 
-    <Border Background="{StaticResource BackgroundVeryLightBrush}">
-        <Grid>
+    <Border>
+        <Grid Background="{StaticResource BackgroundBlueBrush}">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="48" />
-                <ColumnDefinition Width="275" />
+                <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <local:SideBarControl>
+            <Grid local:AnimateSlideInFromLeftProperty.Value="{Binding ApplicationViewModel.SideMenuVisible, 
+                                     Source={x:Static local:ViewModelLocator.Instance}}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
                 
-            </local:SideBarControl>
+                <local:SideBarControl Width="48">
+                
+                </local:SideBarControl>
 
-            <local:SideMenuControl Grid.Column="1">
+                
+                <local:SideMenuControl Width="275" Grid.Column="1">
 
-                <local:ChatListControl />
+                    <local:ChatListControl />
 
-            </local:SideMenuControl>
+                </local:SideMenuControl>
+            </Grid>
 
-            <Border Grid.Column="2" Background="{StaticResource BackgroundBlueBrush}">
+            <Border Grid.Column="1" Background="{StaticResource BackgroundBlueBrush}">
                 <Grid>
-                    <Frame  
-                        x:Name="MainFrame" 
-                        Content="{Binding ApplicationViewModel.CurrentPage, 
+                    <local:PageHost  
+                       d:DataContext=""
+                       DataContext="{Binding ApplicationViewModel.CurrentPage, 
                                      Source={x:Static local:ViewModelLocator.Instance},  
                                      Converter={local:ApplicationPageValueConverter}}"
-                        Background="Transparent"/>
+                       CurrentPage="{Binding}" />
                 </Grid>
             </Border>
 

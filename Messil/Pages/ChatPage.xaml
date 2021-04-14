@@ -11,6 +11,6 @@
       Title="Chat">
 
     <Border>
-        
+        <TextBlock Text="А че когда чат сделают?" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="{StaticResource FontSizeLarge}" />
     </Border>
 </local:BasePage>

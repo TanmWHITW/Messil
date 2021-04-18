@@ -112,7 +112,7 @@ namespace Messil
         /// <summary>
         /// The height of the title bar / caption of the window
         /// </summary>
-        public int TitleHeight { get; set; } = 36;
+        public int TitleHeight { get; set; } = 42;
         /// <summary>
         /// The height of the title bar / caption of the window
         /// </summary>

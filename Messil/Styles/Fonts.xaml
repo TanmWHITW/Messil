@@ -2,11 +2,11 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:Messil" xmlns:system="clr-namespace:System;assembly=mscorlib">
 
-    <FontFamily x:Key="RobotoRegular">pack://application;,,,/Fonts/#Roboto</FontFamily>
+    <FontFamily x:Key="RobotoRegular">pack://application;,,,/Fonts/#Lato</FontFamily>
 
-    <FontFamily x:Key="RobotoBold">pack://application;,,,/Fonts/#Roboto Bold</FontFamily>
-    <FontFamily x:Key="RobotoLight">pack://application;,,,/Fonts/#Roboto Light</FontFamily>
-    <FontFamily x:Key="RobotoThin">pack://application;,,,/Fonts/#Roboto Thin</FontFamily>
+    <FontFamily x:Key="RobotoBold">pack://application;,,,/Fonts/#Lato Bold</FontFamily>
+    <FontFamily x:Key="RobotoLight">pack://application;,,,/Fonts/#Lato Light</FontFamily>
+    <FontFamily x:Key="RobotoThin">pack://application;,,,/Fonts/#Lato Thin</FontFamily>
 
     <FontFamily x:Key="UbuntuMono">pack://application;,,,/Fonts/#Ubuntu Mono</FontFamily>
     <FontFamily x:Key="UbuntuMonoBold">pack://application;,,,/Fonts/#Ubuntu Mono Bold</FontFamily>

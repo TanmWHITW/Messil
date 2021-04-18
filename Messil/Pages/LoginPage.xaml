@@ -12,16 +12,16 @@
 
     <Border>
         <Grid>
-
             <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
                 <StackPanel
                     HorizontalAlignment="Center" VerticalAlignment="Center"
                     TextBlock.TextAlignment="Center">
-                    <Border Background="{StaticResource ForegroundVeryLightBrush}"
+                    <Border Background="{StaticResource BackgroundVeryLightBrush}"
                             CornerRadius="10"
                             Padding="15 50 15 15"
                             Width="330"
                             Margin="50 30 50 0"
+                            BorderThickness="2"
                             >
                         <StackPanel>
                             <TextBlock Text="Вход в аккаунт" 
@@ -46,7 +46,7 @@
                                         Binding SecurePassword, 
                                         ElementName=Page}"
                                     />
-                            
+
                             <Button Style="{StaticResource TextButton}" 
                                     Margin="0"
                                     FontSize="{StaticResource FontSizeSmall}"
@@ -55,6 +55,9 @@
                                     />
 
                         </StackPanel>
+                        <Border.BorderBrush>
+                            <SolidColorBrush Opacity="0.09" Color="{StaticResource ForegroundMain}" />
+                        </Border.BorderBrush>
                     </Border>
 
                     <Button Style="{StaticResource TextButton}" 

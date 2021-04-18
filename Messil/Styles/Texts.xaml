@@ -130,13 +130,11 @@
     <Style TargetType="{x:Type TextBox}" x:Key="SearchBox" BasedOn="{StaticResource BaseStyle}">
         <Setter Property="FontSize" Value="{StaticResource FontSizeSmall}" />
         <Setter Property="FontFamily" Value="{StaticResource RobotoLight}" />
-        <Setter Property="Padding" Value="8 8 0 8" />
-        <Setter Property="Width" Value="229" />
-        <Setter Property="Margin" Value="8 8 0 8" />
         <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Padding" Value="5 0" />
         <Setter Property="VerticalAlignment" Value="Center" />
-        <Setter Property="Background" Value="{StaticResource BackgroundVeryLightBrush}" />
-
+        
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TextBoxBase}">

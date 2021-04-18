@@ -32,7 +32,6 @@ namespace Messil.Core
                     Name = "John",
                     Message = "Привет, Джон",
                     ProfilePictureRGB = "710117",
-                    IsSelected = true,
                 },
                 new ChatListItemViewModel
                 {
@@ -55,7 +54,7 @@ namespace Messil.Core
                     Name = "World Web",
                     Message = "Какой IP адрес сервера? Он изменился или нет?",
                     ProfilePictureRGB = "f32c6f",
-                    NewContentAvailable = true,
+                    IsSelected = true,
                 },
                 new ChatListItemViewModel
                 {
@@ -71,6 +70,7 @@ namespace Messil.Core
                     Name = "Alphabet",
                     Message = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ",
                     ProfilePictureRGB = "6D0E10",
+                     NewContentAvailable = true,
                 },
                 new ChatListItemViewModel
                 {

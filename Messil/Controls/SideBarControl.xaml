@@ -6,18 +6,21 @@
              xmlns:core="clr-namespace:Messil.Core;assembly=Messil.Core"             
              xmlns:local="clr-namespace:Messil"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="48">
+             d:DesignHeight="500" d:DesignWidth="78">
     <UserControl.Template>
         <ControlTemplate>
-            <Border Background="{StaticResource ForegroundVeryLightBrush}">
+            <Border Background="{StaticResource BackgroundBlueBrush}" 
+                    Margin="10 5 10 5"
+                    CornerRadius="10"
+                    ClipToBounds="True">
                 <Grid>
                     <StackPanel>
-                        <Button Style="{StaticResource SidebarButton}" Content="{StaticResource FontAwesomeUserIcon}" />
+                        <Button Style="{StaticResource SidebarButtonTop}" Content="{StaticResource FontAwesomeUserIcon}" Tag="10 10 0 0"/>
                         <Button Style="{StaticResource SidebarButton}" Content="{StaticResource FontAwesomeChatIcon}" />
                         <Button Style="{StaticResource SidebarButton}" Content="{StaticResource FontAwesomeMailIcon}" />
                         <Button Style="{StaticResource SidebarButton}" Content="{StaticResource FontAwesomeSettingsIcon}" />
                     </StackPanel>
-                    <Button Style="{StaticResource SidebarButton}" Content="{StaticResource FontAwesomeSigOutIcon}" VerticalAlignment="Bottom"/>
+                    <Button Style="{StaticResource SidebarButtonBottom}" Content="{StaticResource FontAwesomeSigOutIcon}" Margin="0" VerticalAlignment="Bottom"/>
                 </Grid>
             </Border>
         </ControlTemplate>

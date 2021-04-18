@@ -6,8 +6,8 @@
              xmlns:core="clr-namespace:Messil.Core;assembly=Messil.Core"             
              xmlns:local="clr-namespace:Messil"
              mc:Ignorable="d" 
-             Height="65"
-             d:DesignHeight="70" d:DesignWidth="275">
+             Height="72"
+             d:DesignHeight="72" d:DesignWidth="300">
 
     <UserControl.Resources>
         <Style x:Key="ContentStyle" TargetType="{x:Type ContentControl}">
@@ -16,9 +16,13 @@
                     <ControlTemplate TargetType="{x:Type ContentControl}">
                         <Border
                                 x:Name="background"
-                                Background="{StaticResource ForegroundVeryLightBrush}">
-                            <Grid   x:Name="container" 
+                                Background="{StaticResource ForegroundVeryLightBrush}"
+                                Margin="0 0 0 4"
+                                CornerRadius="10">
+                            <Border x:Name="container" 
                                     Background="Transparent"
+                                    CornerRadius="10">
+                                <Grid   
                                     d:DataContext="{x:Static core:ChatListItemDesignModel.Instance}">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -26,7 +30,7 @@
                                     <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
 
-                                <Border Padding="10">
+                                <Border Padding="12" CornerRadius="10 0 0 10">
                                     <Border Background="{Binding ProfilePictureRGB, Converter={local:StingRGBToBrushConverter}}" 
                                                 Width="{Binding ActualHeight, RelativeSource={RelativeSource Self}}"
                                                 CornerRadius="{Binding ActualHeight, RelativeSource={RelativeSource Self}}"
@@ -40,14 +44,14 @@
                                     </Border>
                                 </Border>
 
-                                <Border Grid.Column="1" Padding="0 0 8 0" >
+                                <Border Grid.Column="1" Padding="0 0 8 0" CornerRadius="0 10 10 0">
                                     <StackPanel VerticalAlignment="Center">
                                         <TextBlock Text="{Binding Name}" 
                                                    TextTrimming="CharacterEllipsis"
                                                    FontFamily="{StaticResource RobotoRegular}"
                                                    Foreground="{StaticResource BackgroundBlueBrush}"
                                                    FontSize="{StaticResource FontSizeXSmall}"
-                                                   Margin="0 0 0 5"
+                                                   Margin="0 0 0 7"
                                                         />
                                         <TextBlock Text="{Binding Message}" 
                                                    TextTrimming="CharacterEllipsis"
@@ -64,14 +68,23 @@
                                             CornerRadius="{Binding ActualHeight, RelativeSource={RelativeSource Self}}"
                                             Visibility="{Binding NewContentAvailable, Converter={local:BooleanToVisiblityCollapsedConverter}, ConverterParameter=True}"/>
 
-                                
-                            </Grid>
+
+                                </Grid>
+                            </Border>
                         </Border>
 
                         <ControlTemplate.Triggers>
                             
                             <DataTrigger Binding="{Binding IsSelected}" Value="True">
-                                <Setter Property="Background" TargetName="background" Value="{StaticResource BackgroundVeryLightBlueBrush}" />
+                                <Setter Property="Background" TargetName="background">
+                                    <Setter.Value>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                            <GradientStop Color="{StaticResource BackgroundLightBlue}" Offset="0.0" />
+                                            <GradientStop Color="{StaticResource BackgroundVeryLight}" Offset="1.0" />
+                                        </LinearGradientBrush>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="IsEnabled" Value="False" />
                             </DataTrigger>
                             
                             <EventTrigger RoutedEvent="MouseEnter">
@@ -88,10 +101,6 @@
                                     </Storyboard>
                                 </BeginStoryboard>
                             </EventTrigger>
-
-                            <Trigger Property="IsEnabled" Value="False">
-                                <Setter Property="Background" TargetName="container" Value="{StaticResource ForegroundVeryDarkBrush}"/>
-                            </Trigger>
                         </ControlTemplate.Triggers>
                         
                     </ControlTemplate>

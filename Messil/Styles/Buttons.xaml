@@ -31,7 +31,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
-                    <Border Padding="9 7 9 7">
+                    <Border Padding="9 10 9 10">
                         <Viewbox>
                             <Canvas Height="512" Width="512">
                                 <Path Data="M256,12.147C233.808,4.327,209.358,0,183.695,0C82.49,0,0.151,67.366,0.151,150.172  c0,44.829,24.773,87.556,66.743,115.933v84.297c0,6.752,4.06,12.837,10.301,15.418c6.129,2.547,13.349,1.212,18.188-3.615  l63.261-63.261c11.78,1.335,19.189-5.829,20.168-14.528c4.605-40.813,35.763-73.762,77.188-91.705  c27.71-12.003,60.002-17.286,92.017-13.716c9.133,1.057,17.398-5.551,18.443-14.695c0.523-4.55,0.779-9.3,0.779-14.127  C367.239,88.357,321.364,35.151,256,12.147z" Fill="{StaticResource BackgroundBlueBrush}" />
@@ -74,7 +74,7 @@
 
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="{StaticResource BackgroundLightBlueBrush}" />
+                <Setter Property="Background" Value="{StaticResource BackgroundLightBrush}" />
             </Trigger>
         </Style.Triggers>
 
@@ -158,7 +158,7 @@
     <Style x:Key="TextButton" TargetType="{x:Type Button}" BasedOn="{StaticResource BaseStyle}">
 
         <Setter Property="Background" Value="Transparent" />
-        <Setter Property="Foreground" Value="{StaticResource ForegroundVeryLightBrush}" />
+        <Setter Property="Foreground" Value="{StaticResource BackgroundBlueBrush}" />
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="FontSize" Value="{StaticResource FontSizeRegular}" />
         <Setter Property="Padding" Value="50 10" />
@@ -196,14 +196,11 @@
     <!-- Search Icon Button in chats list -->
     <Style TargetType="{x:Type Button}" x:Key="SearchIconButton" BasedOn="{StaticResource BaseStyle}">
 
-        <Setter Property="Background" Value="{StaticResource BackgroundVeryLightBrush}" />
         <Setter Property="Foreground" Value="{StaticResource ForegroundMainBrush}" />
         <Setter Property="BorderThickness" Value="0" />
-        <Setter Property="Padding" Value="10" />
         <Setter Property="FontSize" Value="{StaticResource FontSizeSmall}" />
-        <Setter Property="Margin" Value="0 8 0 8" />
-        <Setter Property="Height" Value="32" />
         <Setter Property="Width" Value="{Binding ActualHeight, RelativeSource={RelativeSource Self}}" />
+        <Setter Property="Padding" Value="10" />
 
         <Setter Property="local:IsBusyProperty.Value" Value="False" />
 
@@ -213,19 +210,20 @@
                     <Border x:Name="border" 
                             CornerRadius="0 6 6 0"
                             BorderBrush="{TemplateBinding BorderBrush}" 
-                            BorderThickness="{TemplateBinding BorderThickness}" 
-                            Background="{TemplateBinding Background}" 
+                            BorderThickness="{TemplateBinding BorderThickness}"
                             SnapsToDevicePixels="True">
                         <Grid>
                             <Viewbox>
-                                <TextBlock Text="{TemplateBinding Content}" 
+                                <TextBlock 
                                    Visibility="{TemplateBinding local:IsBusyProperty.Value, Converter={local:BooleanToVisiblityConverter}}"
                                    FontFamily="{StaticResource FontAwesome}"
                                    Focusable="False" 
                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
                                    Margin="{TemplateBinding Padding}" 
                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
-                                   VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                   VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                   Text="{StaticResource FontAwesomeSearchIcon}"/>
+                                
                             </Viewbox>
                         </Grid>
                     </Border>
@@ -245,11 +243,12 @@
     <Style TargetType="{x:Type Button}" x:Key="SidebarButton" BasedOn="{StaticResource BaseStyle}">
 
         <Setter Property="Background" Value="Transparent" />
-        <Setter Property="Foreground" Value="{StaticResource BackgroundBlueBrush}" />
         <Setter Property="BorderThickness" Value="0" />
-        <Setter Property="Padding" Value="11" />
-        <Setter Property="FontSize" Value="{StaticResource FontSizeSmall}" />
-        <Setter Property="Margin" Value="0" />
+        <Setter Property="Height" Value="58" />
+        <Setter Property="Opacity" Value="0.9" />
+        <Setter Property="Margin" Value="0 0 0 8" />
+        <Setter Property="Width" Value="58" />
+        <Setter Property="FontSize" Value="{StaticResource FontSizeMedium}" />
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="HorizontalAlignment" Value="Center" />
 
@@ -260,31 +259,189 @@
                             BorderBrush="{TemplateBinding BorderBrush}" 
                             BorderThickness="{TemplateBinding BorderThickness}" 
                             Background="{TemplateBinding Background}" 
-                            SnapsToDevicePixels="True">
+                            SnapsToDevicePixels="True"
+                            ClipToBounds="True"
+                            >
                         <Grid>
-                            <Viewbox>
-                                <TextBlock Text="{TemplateBinding Content}" 
+                            <TextBlock Text="{TemplateBinding Content}" 
+                                   x:Name="container"                                      
                                    Visibility="{TemplateBinding local:IsBusyProperty.Value, Converter={local:BooleanToVisiblityConverter}}"
                                    FontFamily="{StaticResource FontAwesome}"
                                    Focusable="False" 
                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
-                                   Margin="{TemplateBinding Padding}" 
+                                   Margin="0"
                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                            </Viewbox>
+                            <TextBlock.Foreground>
+                                <SolidColorBrush x:Name="btnForeground" Color="{StaticResource BackgroundLightBlue}" />
+                            </TextBlock.Foreground>
                         </Grid>
                     </Border>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Foreground" Value="{StaticResource BackgroundLightBlueBrush}"/>
-                        </Trigger>
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter Property="Foreground" Value="{StaticResource ForegroundVeryDarkBrush}"/>
                         </Trigger>
+                        <EventTrigger RoutedEvent="MouseEnter">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation To="{StaticResource BackgroundOrange}" Duration="0:0:0.25" Storyboard.TargetName="btnForeground" Storyboard.TargetProperty="Color"/>
+                                    <ColorAnimation To="{StaticResource BackgroundLightBlue}" Storyboard.TargetName="border" Duration="0:0:0.25" Storyboard.TargetProperty="Background.Color"/>
+                                    <DoubleAnimation To="1" Duration="0:0:0.25" Storyboard.TargetProperty="Opacity" />
+                                    <ThicknessAnimation To="14 0 0 0" Duration="0:0:0.25" Storyboard.TargetName="container" Storyboard.TargetProperty="Padding"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="MouseLeave">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation To="{StaticResource BackgroundLightBlue}" Duration="0:0:0.25" Storyboard.TargetName="btnForeground" Storyboard.TargetProperty="Color"/>
+                                    <ThicknessAnimation To="0" Duration="0:0:0.25" Storyboard.TargetName="container" Storyboard.TargetProperty="Padding"/>
+                                    <ColorAnimation To="Transparent" Storyboard.TargetName="border" Duration="0:0:0.25" Storyboard.TargetProperty="Background.Color"/>
+                                    <DoubleAnimation To="0.9" Duration="0:0:0.25" Storyboard.TargetProperty="Opacity" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
+
+    <Style TargetType="{x:Type Button}" x:Key="SidebarButtonTop" BasedOn="{StaticResource SidebarButton}">
+
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Height" Value="58" />
+        <Setter Property="Opacity" Value="0.9" />
+        <Setter Property="Margin" Value="0 0 0 8" />
+        <Setter Property="Width" Value="58" />
+        <Setter Property="FontSize" Value="{StaticResource FontSizeMedium}" />
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Center" />
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ButtonBase}">
+                    <Border x:Name="border" 
+                            BorderBrush="{TemplateBinding BorderBrush}" 
+                            BorderThickness="{TemplateBinding BorderThickness}" 
+                            CornerRadius="10 10 0 0"
+                            Background="{TemplateBinding Background}" 
+                            SnapsToDevicePixels="True"
+                            ClipToBounds="True"
+                            >
+                        <Grid>
+                            <TextBlock Text="{TemplateBinding Content}" 
+                                   x:Name="container"                                      
+                                   Visibility="{TemplateBinding local:IsBusyProperty.Value, Converter={local:BooleanToVisiblityConverter}}"
+                                   FontFamily="{StaticResource FontAwesome}"
+                                   Focusable="False" 
+                                   HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                   Margin="0"
+                                   SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
+                                   VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            <TextBlock.Foreground>
+                                <SolidColorBrush x:Name="btnForeground" Color="{StaticResource BackgroundLightBlue}" />
+                            </TextBlock.Foreground>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Foreground" Value="{StaticResource ForegroundVeryDarkBrush}"/>
+                        </Trigger>
+                        <EventTrigger RoutedEvent="MouseEnter">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation To="{StaticResource BackgroundOrange}" Duration="0:0:0.25" Storyboard.TargetName="btnForeground" Storyboard.TargetProperty="Color"/>
+                                    <ColorAnimation To="{StaticResource BackgroundLightBlue}" Storyboard.TargetName="border" Duration="0:0:0.25" Storyboard.TargetProperty="Background.Color"/>
+                                    <DoubleAnimation To="1" Duration="0:0:0.25" Storyboard.TargetProperty="Opacity" />
+                                    <ThicknessAnimation To="14 0 0 0" Duration="0:0:0.25" Storyboard.TargetName="container" Storyboard.TargetProperty="Padding"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="MouseLeave">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation To="{StaticResource BackgroundLightBlue}" Duration="0:0:0.25" Storyboard.TargetName="btnForeground" Storyboard.TargetProperty="Color"/>
+                                    <ThicknessAnimation To="0" Duration="0:0:0.25" Storyboard.TargetName="container" Storyboard.TargetProperty="Padding"/>
+                                    <ColorAnimation To="Transparent" Storyboard.TargetName="border" Duration="0:0:0.25" Storyboard.TargetProperty="Background.Color"/>
+                                    <DoubleAnimation To="0.9" Duration="0:0:0.25" Storyboard.TargetProperty="Opacity" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type Button}" x:Key="SidebarButtonBottom" BasedOn="{StaticResource SidebarButton}">
+
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Height" Value="58" />
+        <Setter Property="Opacity" Value="0.9" />
+        <Setter Property="Margin" Value="0 0 0 8" />
+        <Setter Property="Width" Value="58" />
+        <Setter Property="FontSize" Value="{StaticResource FontSizeMedium}" />
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Center" />
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ButtonBase}">
+                    <Border x:Name="border" 
+                            BorderBrush="{TemplateBinding BorderBrush}" 
+                            BorderThickness="{TemplateBinding BorderThickness}" 
+                            CornerRadius="0 0 10 10"
+                            Background="{TemplateBinding Background}" 
+                            SnapsToDevicePixels="True"
+                            ClipToBounds="True"
+                            >
+                        <Grid>
+                            <TextBlock Text="{TemplateBinding Content}" 
+                                   x:Name="container"                                      
+                                   Visibility="{TemplateBinding local:IsBusyProperty.Value, Converter={local:BooleanToVisiblityConverter}}"
+                                   FontFamily="{StaticResource FontAwesome}"
+                                   Focusable="False" 
+                                   HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                   Margin="0"
+                                   SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
+                                   VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            <TextBlock.Foreground>
+                                <SolidColorBrush x:Name="btnForeground" Color="{StaticResource BackgroundLightBlue}" />
+                            </TextBlock.Foreground>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Foreground" Value="{StaticResource ForegroundVeryDarkBrush}"/>
+                        </Trigger>
+                        <EventTrigger RoutedEvent="MouseEnter">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation To="Red" Duration="0:0:0.25" Storyboard.TargetName="btnForeground" Storyboard.TargetProperty="Color"/>
+                                    <ColorAnimation To="{StaticResource BackgroundLightBlue}" Storyboard.TargetName="border" Duration="0:0:0.25" Storyboard.TargetProperty="Background.Color"/>
+                                    <DoubleAnimation To="1" Duration="0:0:0.25" Storyboard.TargetProperty="Opacity" />
+                                    <ThicknessAnimation To="14 0 0 0" Duration="0:0:0.25" Storyboard.TargetName="container" Storyboard.TargetProperty="Padding"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="MouseLeave">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation To="{StaticResource BackgroundLightBlue}" Duration="0:0:0.25" Storyboard.TargetName="btnForeground" Storyboard.TargetProperty="Color"/>
+                                    <ThicknessAnimation To="0" Duration="0:0:0.25" Storyboard.TargetName="container" Storyboard.TargetProperty="Padding"/>
+                                    <ColorAnimation To="Transparent" Storyboard.TargetName="border" Duration="0:0:0.25" Storyboard.TargetProperty="Background.Color"/>
+                                    <DoubleAnimation To="0.9" Duration="0:0:0.25" Storyboard.TargetProperty="Opacity" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 
 </ResourceDictionary>

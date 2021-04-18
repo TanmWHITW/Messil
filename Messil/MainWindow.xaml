@@ -12,7 +12,7 @@
         WindowStartupLocation="CenterScreen"
         MinHeight="{Binding WindowMinimumHeight}"
         MinWidth="{Binding WindowMinimumWidth}"
-        Title="Messil" Height="600" Width="900">
+        Title="Messil" Height="615" Width="900">
 
     <Window.Resources>
         <Style TargetType="{x:Type local:MainWindow}">
@@ -27,7 +27,7 @@
 
                                 <!-- Opacity mask for corners on grid -->
                                 <Border x:Name="Container"
-                                        Background="{StaticResource ForegroundVeryLightBrush}"
+                                        Background="{StaticResource BackgroundVeryLightBrush}"
                                         CornerRadius="{Binding WindowCornerRadius, FallbackValue=10}" />
 
                                 <!-- Window border and dropshadown -->
@@ -49,8 +49,11 @@
                                     <Grid.RowDefinitions>
 
                                         <!-- Title Bar -->
-                                        <RowDefinition Height="{Binding TitleHeightGridLength, FallbackValue=42}" />
+                                        <RowDefinition Height="{Binding TitleHeightGridLength, FallbackValue=48}" />
 
+                                        <!-- Drop Shadow -->
+                                        <RowDefinition Height="Auto" />
+                                        
                                         <!-- Window Content -->
                                         <RowDefinition Height="*" />
 
@@ -64,6 +67,8 @@
                                             <ColumnDefinition Width="Auto" />
                                             <!-- Title -->
                                             <ColumnDefinition Width="*" />
+
+                                            <ColumnDefinition Width="*" />
                                             <!-- Windows Button -->
                                             <ColumnDefinition Width="Auto" />
 
@@ -73,8 +78,8 @@
                                         <Button Style="{StaticResource SystemIconButton}" Command="{Binding MenuCommand}" />
 
                                         <!-- Title -->
-                                        <Viewbox Grid.Column="0" Grid.ColumnSpan="3">
-                                            <StackPanel Margin="0 3">
+                                        <Viewbox Grid.Column="1" HorizontalAlignment="Left">
+                                            <StackPanel Margin="0 6">
                                                 <TextBlock FontFamily="{StaticResource UbuntuMono}">
                                                     <Run Text="M" Foreground="#e01e5a"/><Run Text="e" Foreground="{StaticResource BackgroundBlueBrush}"/><Run Text="s" Foreground="{StaticResource BackgroundOrangeBrush}"/><Run Text="s" Foreground="{StaticResource BackgroundOrangeBrush}"/><Run Text="i" Foreground="#2eb67d"/><Run Text="l" Foreground="{StaticResource BackgroundBlueBrush}"/>
                                                 </TextBlock>
@@ -82,7 +87,7 @@
                                         </Viewbox>
 
                                         <!-- Window Buttons -->
-                                        <StackPanel Grid.Column="2" Orientation="Horizontal">
+                                        <StackPanel Grid.Column="3" Orientation="Horizontal">
                                             <Button Command="{Binding MinimizeCommand}" Style="{StaticResource WindowControlButton}" Content="_" />
                                             <Button Command="{Binding MaximizeCommand}" Style="{StaticResource WindowControlButton}" Content="[ ]" />
                                             <Button Command="{Binding CloseCommand}" Style="{StaticResource WindowCloseButton}" Content="X" />
@@ -90,7 +95,27 @@
 
                                     </Grid>
 
-                                    <Border Grid.Row="1" Padding="{Binding InnerContentPadding, FallbackValue=0}" ClipToBounds="True">
+                                    <Border Grid.Row="1" Height="5" BorderThickness="0 0.2 0 0">
+                                        <!-- Underline -->
+                                        <Border.BorderBrush>
+                                            <LinearGradientBrush StartPoint="0,0" EndPoint="1, 0">
+                                                <GradientStop Color="{StaticResource BackgroundLight}" Offset="0.0" />
+                                                <GradientStop Color="{StaticResource ForegroundMain}" Offset="0.5" />
+                                                <GradientStop Color="{StaticResource BackgroundLight}" Offset="1.0" />
+                                            </LinearGradientBrush>
+                                        </Border.BorderBrush>
+
+                                        <!-- Drop shadow -->
+                                        <Border.Background>
+                                            <LinearGradientBrush StartPoint="0,0" EndPoint="0, 1">
+                                                <GradientStop Color="{StaticResource BackgroundLight}" Offset="0.0" />
+                                                <GradientStop Color="{StaticResource BackgroundVeryLight}" Offset="1.0" />
+                                            </LinearGradientBrush>
+                                        </Border.Background>
+
+                                    </Border>
+
+                                    <Border Grid.Row="2" Padding="{Binding InnerContentPadding, FallbackValue=0}" ClipToBounds="True">
                                         <ContentPresenter Content="{TemplateBinding Content}" />
                                     </Border>
                                 </Grid>
@@ -113,33 +138,34 @@
     </WindowChrome.WindowChrome>
 
 
-    <Border>
-        <Grid Background="{StaticResource BackgroundBlueBrush}">
+    <Border Background="{StaticResource BackgroundVeryLightBrush}">
+        <Grid >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
+
             <Grid local:AnimateSlideInFromLeftProperty.Value="{Binding ApplicationViewModel.SideMenuVisible, 
-                                     Source={x:Static local:ViewModelLocator.Instance}}">
+                  Source={x:Static local:ViewModelLocator.Instance}}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                
-                <local:SideBarControl Width="48">
-                
-                </local:SideBarControl>
 
-                
-                <local:SideMenuControl Width="275" Grid.Column="1">
+                <local:SideBarControl Width="78" 
+                                      HorizontalAlignment="Left" Panel.ZIndex="1"
+                                      />
 
+                <local:SideMenuControl Grid.ColumnSpan="2" 
+                                       Width="378" 
+                                       >
                     <local:ChatListControl />
-
                 </local:SideMenuControl>
+                
             </Grid>
 
-            <Border Grid.Column="1" Background="{StaticResource BackgroundBlueBrush}">
+            <Border Grid.Column="1" Panel.ZIndex="2">
                 <Grid>
                     <local:PageHost  
                        d:DataContext=""

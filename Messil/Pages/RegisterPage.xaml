@@ -22,6 +22,7 @@
                             Padding="15 50 15 15"
                             Width="330"
                             Margin="50 30 50 0"
+                            BorderThickness="2"
                             >
                         <StackPanel>
                             <TextBlock Text="Зарегестрируйся" 
@@ -53,6 +54,9 @@
                                     />
 
                         </StackPanel>
+                        <Border.BorderBrush>
+                            <SolidColorBrush Opacity="0.08" Color="{StaticResource ForegroundMain}" />
+                        </Border.BorderBrush>
                     </Border>
 
                     <Button Style="{StaticResource TextButton}" 

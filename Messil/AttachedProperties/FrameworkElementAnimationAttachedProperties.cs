@@ -73,10 +73,10 @@ namespace Messil
             {
                 if (value)
                     // Animate in
-                    await element.SlideAndFadeInFromLeftAsync(FirstLoad ? 0 : 0.3f, keepMargin: false);
+                    await element.SlideAndFadeInFromLeftAsync(FirstLoad ? 0.0f : 0.4f, keepMargin: false);
                 else
                     // Animate out
-                    await element.SlideAndFadeOutToLeftAsync(FirstLoad ? 0 : 0.3f, keepMargin: false);
+                    await element.SlideAndFadeOutToLeftAsync(FirstLoad ? 0.0f : 0.4f, keepMargin: false);
             }
         }
 }

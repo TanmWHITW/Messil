@@ -12,7 +12,7 @@
         WindowStartupLocation="CenterScreen"
         MinHeight="{Binding WindowMinimumHeight}"
         MinWidth="{Binding WindowMinimumWidth}"
-        Title="Messil" Height="615" Width="900">
+        Title="Messil" Height="630" Width="900">
 
     <Window.Resources>
         <Style TargetType="{x:Type local:MainWindow}">
@@ -20,7 +20,7 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Window}">
                         <!-- Outer border with the dropshadow margin -->
-                        <Border Margin="{Binding OuterMarginSizeThickness, FallbackValue=10}">
+                        <Border Padding="{Binding OuterMarginSizeThickness, FallbackValue=10}">
 
                             <!-- Main window outline -->
                             <Grid>
@@ -153,19 +153,19 @@
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
 
-                <local:SideBarControl Width="78" 
+                <local:SideBarControl Width="73" 
                                       HorizontalAlignment="Left" Panel.ZIndex="1"
                                       />
 
                 <local:SideMenuControl Grid.ColumnSpan="2" 
-                                       Width="378" 
+                                       Width="373" 
                                        >
                     <local:ChatListControl />
                 </local:SideMenuControl>
                 
             </Grid>
 
-            <Border Grid.Column="1" Panel.ZIndex="2">
+            <Border Grid.Column="1">
                 <Grid>
                     <local:PageHost  
                        d:DataContext=""

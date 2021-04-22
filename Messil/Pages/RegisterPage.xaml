@@ -26,12 +26,12 @@
                             >
                         <StackPanel>
                             <TextBlock Text="Зарегестрируйся" 
-                                       FontSize="{StaticResource FontSizeLarge}"
+                                       FontSize="{StaticResource FontSizeXXLarge}"
                                        Foreground="{StaticResource BackgroundBlueBrush}"
                                        
                                    />
                             <TextBlock Text="Зарегистрируй корпоративный аккаунт"                                Margin="0 2 0 35"    
-                                   FontSize="{StaticResource FontSizeSmall}"
+                                   FontSize="{StaticResource FontSizeMedium}"
                                    Foreground="{StaticResource ForegroundMainBrush}"
                                        />
 
@@ -48,7 +48,7 @@
                                     HorizontalAlignment="Center" />
 
                             <TextBlock Padding="0 10 0 10"
-                                    FontSize="{StaticResource FontSizeSmall}"
+                                    FontSize="{StaticResource FontSizeMedium}"
                                     Foreground="{StaticResource ForegroundMainBrush}"  
                                     Text="Используйте домен domain.ru" 
                                     />

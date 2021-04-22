@@ -9,17 +9,27 @@
              d:DesignHeight="300" d:DesignWidth="348">
     <UserControl.Template>
         <ControlTemplate TargetType="UserControl">
-            <Border Background="Transparent" Margin="73 5 0 5">
+            <Border Padding="73 5 4 5" 
+                    BorderThickness="0 0 1 0">
+                <Border.BorderBrush>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Color="Transparent" Offset="0.0" />
+                        <GradientStop Color="{StaticResource BackgroundLight}" Offset="0.2" />
+                        <GradientStop Color="{StaticResource BackgroundLight}" Offset="0.8" />
+                        <GradientStop Color="Transparent" Offset="1.0" />
+                    </LinearGradientBrush>
+                </Border.BorderBrush>
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="48" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
 
-                    <Border Grid.ColumnSpan="4" CornerRadius="10" Width="250"
-                                                HorizontalAlignment="Center" 
-                                                Background="{StaticResource BackgroundLighterBrush}"
-                                                Margin="8">
+                    <Border CornerRadius="10"
+                            Width="250"
+                            HorizontalAlignment="Center" 
+                            Background="{StaticResource BackgroundLighterBrush}"
+                            Margin="8">
                         <Grid>
                             <TextBox          
                                                          Style="{StaticResource SearchBox}" 

@@ -25,13 +25,13 @@
                             >
                         <StackPanel>
                             <TextBlock Text="Вход в аккаунт" 
-                                       FontSize="{StaticResource FontSizeLarge}"
+                                       FontSize="{StaticResource FontSizeXXLarge}"
                                        Foreground="{StaticResource BackgroundBlueBrush}"
                                        
                                    />
                             <TextBlock Text="Используйте домен domain.ru" 
                                    Margin="0 2 0 35"    
-                                   FontSize="{StaticResource FontSizeSmall}"
+                                   FontSize="{StaticResource FontSizeMedium}"
                                    Foreground="{StaticResource ForegroundMainBrush}"
                                        />
 
@@ -49,7 +49,7 @@
 
                             <Button Style="{StaticResource TextButton}" 
                                     Margin="0"
-                                    FontSize="{StaticResource FontSizeSmall}"
+                                    FontSize="{StaticResource FontSizeMedium}"
                                     Foreground="{StaticResource ForegroundMainBrush}"  
                                     Content="Я забыл пароль..." 
                                     />

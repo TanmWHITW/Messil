@@ -6,11 +6,11 @@
              xmlns:core="clr-namespace:Messil.Core;assembly=Messil.Core"             
              xmlns:local="clr-namespace:Messil"
              mc:Ignorable="d" 
-             d:DesignHeight="500" d:DesignWidth="78">
+             d:DesignHeight="500" d:DesignWidth="73">
     <UserControl.Template>
         <ControlTemplate>
             <Border Background="{StaticResource BackgroundBlueBrush}" 
-                    Margin="10 5 10 5"
+                    Margin="10 5 5 5"
                     CornerRadius="10"
                     ClipToBounds="True">
                 <Grid>

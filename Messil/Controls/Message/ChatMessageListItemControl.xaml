@@ -1,0 +1,78 @@
+﻿<UserControl x:Class="Messil.ChatMessageListItemControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Messil"
+             xmlns:core="clr-namespace:Messil.Core;assembly=Messil.Core"
+             mc:Ignorable="d"  d:DesignWidth="300">
+
+    <Border d:DataContext="{x:Static core:ChatMessageListItemDesignModel.Instance}" 
+            Background="Transparent">
+
+        <Grid HorizontalAlignment="{Binding SendByMe, Converter={local:SentByMeToAlignmentConverter}}"
+              Margin="15 5">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Grid.Triggers>
+                <EventTrigger RoutedEvent="MouseEnter">
+                    <BeginStoryboard>
+                        <Storyboard Storyboard.TargetName="stackPanelTime" Storyboard.TargetProperty="Opacity">
+                            <DoubleAnimation Duration="0:0:0.2" To="1" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+
+                <EventTrigger RoutedEvent="MouseLeave">
+                    <BeginStoryboard>
+                        <Storyboard Storyboard.TargetName="stackPanelTime" Storyboard.TargetProperty="Opacity">
+                            <DoubleAnimation Duration="0:0:0.2" To="0" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Grid.Triggers>
+
+            <Border 
+                    CornerRadius="10"
+                    Padding="15 12"
+                    Background="{Binding SendByMe, Converter={local:SentByMeToBackgroundConverter}}"
+                HorizontalAlignment="Left"
+                    >
+                <TextBlock Text="{Binding Message}" 
+                           TextWrapping="Wrap"
+                           FontFamily="{StaticResource RobotoRegular}"
+                           Foreground="{StaticResource BackgroundBlueDarkBrush}"/>
+            </Border>
+            <Path Grid.Row="1" 
+                      Fill="{Binding SendByMe, Converter={local:SentByMeToBackgroundConverter}}"
+                      Data="M 0,0 L 10,10 L 20,0 L 0,0" 
+                      Margin="13 -1 13 0"
+                      VerticalAlignment="Bottom"
+                      HorizontalAlignment="{Binding SendByMe, Converter={local:SentByMeToAlignmentConverter}}"
+                      />
+            <StackPanel Grid.Row="2"           
+                        x:Name="stackPanelTime"
+                        Opacity="0"
+                            Margin="0 -8 0 0"
+                            Orientation="Horizontal"
+                            HorizontalAlignment="{Binding SendByMe, Converter={local:SentByMeToAlignmentConverter}, ConverterParameter=True}">
+                <TextBlock Margin="8 0 8 0"
+                           Text="{Binding MessageSentTime, Converter={local:TimeToDisplayTimeConverter}}"
+                           Foreground="{StaticResource ForegroundMainBrush}" 
+                           FontSize="{StaticResource FontSizeSmall}"
+                           />
+                <TextBlock 
+                           Text="{Binding MessageReadTime, Converter={local:TimeToReadTimeConverter}}"
+                           Foreground="{StaticResource ForegroundMainBrush}" 
+                           FontSize="{StaticResource FontSizeSmall}"    
+                           />
+            </StackPanel>
+
+        </Grid>
+    </Border>
+</UserControl>

@@ -146,24 +146,10 @@
             </Grid.ColumnDefinitions>
 
 
-            <Grid local:AnimateSlideInFromLeftProperty.Value="{Binding ApplicationViewModel.SideMenuVisible, 
-                  Source={x:Static local:ViewModelLocator.Instance}}">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
-
-                <local:SideBarControl Width="73" 
+            <local:SideBarControl Width="73" local:AnimateSlideInFromLeftProperty.Value="{Binding ApplicationViewModel.SideMenuVisible, 
+                  Source={x:Static local:ViewModelLocator.Instance}}"
                                       HorizontalAlignment="Left" Panel.ZIndex="1"
                                       />
-
-                <local:SideMenuControl Grid.ColumnSpan="2" 
-                                       Width="373" 
-                                       >
-                    <local:ChatListControl />
-                </local:SideMenuControl>
-                
-            </Grid>
 
             <Border Grid.Column="1">
                 <Grid>

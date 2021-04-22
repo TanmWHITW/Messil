@@ -7,11 +7,22 @@
       xmlns:local="clr-namespace:Messil"  
       mc:Ignorable="d"
       x:Name="Page"
-      d:DesignHeight="700" d:DesignWidth="700"
+      d:DesignHeight="700" d:DesignWidth="900"
       Title="Chat">
 
-    
-    <Border>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+
+        <Border>
+            <local:SideMenuControl />
+        </Border>
+        
+        <Border Grid.Column="1">
         <local:ChatMessageListControl />
-    </Border>
+        </Border>
+    </Grid>
 </local:BasePage>

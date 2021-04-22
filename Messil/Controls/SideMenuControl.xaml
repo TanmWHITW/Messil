@@ -6,10 +6,10 @@
              xmlns:core="clr-namespace:Messil.Core;assembly=Messil.Core"             
              xmlns:local="clr-namespace:Messil"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="348">
-    <UserControl.Template>
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Template >
         <ControlTemplate TargetType="UserControl">
-            <Border Padding="73 5 4 5" 
+            <Border Padding="5 5 4 5" 
                     BorderThickness="0 0 1 0">
                 <Border.BorderBrush>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
@@ -26,7 +26,7 @@
                     </Grid.RowDefinitions>
 
                     <Border CornerRadius="10"
-                            Width="250"
+                            Width="275"
                             HorizontalAlignment="Center" 
                             Background="{StaticResource BackgroundLighterBrush}"
                             Margin="8">
@@ -38,8 +38,10 @@
                         </Grid>
                     </Border>
 
-                    <ContentPresenter Grid.Row="1"/>
-                    
+                    <Border Grid.Row="1">
+                        <local:ChatListControl />
+                    </Border>
+
                 </Grid>
             </Border>
         </ControlTemplate>

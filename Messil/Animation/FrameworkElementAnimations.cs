@@ -32,7 +32,7 @@ namespace Messil
             sb.Begin(element);
 
             // Make page visible
-            element.Visibility = Visibility.Visible;
+            element.Visibility = Visibility.Collapsed;
 
             // Wait for it to finish
             await Task.Delay((int)(seconds * 1000));

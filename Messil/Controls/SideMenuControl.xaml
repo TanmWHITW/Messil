@@ -6,7 +6,7 @@
              xmlns:core="clr-namespace:Messil.Core;assembly=Messil.Core"             
              xmlns:local="clr-namespace:Messil"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="600" d:DesignWidth="300">
     <UserControl.Template >
         <ControlTemplate TargetType="UserControl">
             <Border Padding="5 5 4 5" 
@@ -22,23 +22,44 @@
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="48" />
+                        <RowDefinition Height="Auto" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
 
                     <Border CornerRadius="10"
-                            Width="275"
                             HorizontalAlignment="Center" 
                             Background="{StaticResource BackgroundLighterBrush}"
-                            Margin="8">
-                        <Grid>
-                            <TextBox          
-                                                         Style="{StaticResource SearchBox}" 
-                                                         Tag="Поиск по приложению ..." />
-                            <Button HorizontalAlignment="Right" Content="{StaticResource SearchIconButton}" Style="{StaticResource SearchIconButton}"/>
-                        </Grid>
+                            Margin="8"
+                            Padding="2">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBox      Width="230" 
+                                          Style="{StaticResource SearchBox}" 
+                                          Tag="Поиск по приложению ..." />
+                                
+                            <Button HorizontalAlignment="Right"
+                                    Style="{StaticResource SearchIconButton}"
+                                    Content="{StaticResource FontAwesomeSearchIcon}" 
+                                    />
+                        </StackPanel>
                     </Border>
 
-                    <Border Grid.Row="1">
+                    <Border Grid.Row="1" >
+                        <StackPanel Orientation="Horizontal" 
+                                    HorizontalAlignment="Center"
+                                    Margin="5 5 5 10">
+                            <Button Style="{StaticResource SelectChatTypeButton}"                  
+                                    Content="Чаты"
+                                    IsEnabled="False"
+                                    />
+                            <Button Style="{StaticResource SelectChatTypeButton}"                                    
+                                    Content="Группы" 
+                                    
+                                    />
+                        </StackPanel>
+                    </Border>
+
+
+                    <Border Grid.Row="2">
                         <local:ChatListControl />
                     </Border>
 

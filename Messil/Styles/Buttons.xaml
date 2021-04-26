@@ -196,6 +196,63 @@
         </Setter>
     </Style>
 
+    <Style x:Key="IconButton" TargetType="{x:Type Button}" BasedOn="{StaticResource BaseStyle}">
+
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="{StaticResource ForegroundLightBrush}" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="FontSize" Value="{StaticResource FontSizeXXLarge}" />
+        <Setter Property="FontFamily" Value="{StaticResource FontAwesome}" />
+        <Setter Property="Padding" Value="30" />
+        <Setter Property="Margin" Value="0" />
+
+        <Setter Property="Width" Value="{Binding ActualHeight, RelativeSource={RelativeSource Self}}" />
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ButtonBase}">
+                    <Border x:Name="border"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Background}" 
+                            SnapsToDevicePixels="True">
+                        <Grid>
+                            <Viewbox>
+                                <TextBlock Text="{TemplateBinding Content}" 
+                                       Focusable="False" 
+                                       FontFamily="{TemplateBinding FontFamily}"
+                                       FontSize="{TemplateBinding FontSize}"
+                                       HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                       Margin="{TemplateBinding Padding}" 
+                                       SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
+                                       VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            </Viewbox>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <EventTrigger RoutedEvent="MouseEnter">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation To="{StaticResource BackgroundLightBlue}" Duration="0:0:0.3" Storyboard.TargetName="border" Storyboard.TargetProperty="Background.Color" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="MouseLeave">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation To="Transparent" Duration="0:0:0.3" Storyboard.TargetName="border" Storyboard.TargetProperty="Background.Color" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Background" TargetName="border" Value="{StaticResource ForegroundDarkBrush}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <!-- Search Icon Button in chats list -->
     <Style TargetType="{x:Type Button}" x:Key="SearchIconButton" BasedOn="{StaticResource BaseStyle}">
 
@@ -204,6 +261,7 @@
         <Setter Property="FontSize" Value="{StaticResource FontSizeMedium}" />
         <Setter Property="Width" Value="{Binding ActualHeight, RelativeSource={RelativeSource Self}}" />
         <Setter Property="Padding" Value="10" />
+        <Setter Property="FontFamily" Value="{StaticResource FontAwesome}" />
 
         <Setter Property="local:IsBusyProperty.Value" Value="False" />
 
@@ -219,14 +277,16 @@
                             <Viewbox>
                                 <TextBlock 
                                    Visibility="{TemplateBinding local:IsBusyProperty.Value, Converter={local:BooleanToVisiblityConverter}}"
-                                   FontFamily="{StaticResource FontAwesome}"
+                                   FontFamily="{TemplateBinding FontFamily}"
                                    Focusable="False" 
+                                   Foreground="{TemplateBinding Foreground}"
                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
                                    Margin="{TemplateBinding Padding}" 
                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                   Text="{StaticResource FontAwesomeSearchIcon}"/>
-                                
+                                    Text="{TemplateBinding Content}"
+                                    />
+
                             </Viewbox>
                         </Grid>
                     </Border>
@@ -450,5 +510,79 @@
         </Setter>
     </Style>
 
+    <Style TargetType="{x:Type Button}" x:Key="SelectChatTypeButton" BasedOn="{StaticResource BaseStyle}">
 
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0 0 0 4" />
+        <Setter Property="Width" Value="75" />
+        <Setter Property="FontFamily" Value="{StaticResource RobotoRegular}" />
+        <Setter Property="FontSize" Value="{StaticResource FontSizeSmall}" />
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="Foreground" Value="{StaticResource ForegroundMainBrush}" />
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ButtonBase}">
+                    <Border x:Name="border" 
+                            BorderThickness="{TemplateBinding BorderThickness}" 
+                            Background="{TemplateBinding Background}" 
+                            SnapsToDevicePixels="True"
+                            ClipToBounds="True"
+                            >
+                        <Grid>
+                            <TextBlock Text="{TemplateBinding Content}" 
+                                   x:Name="container"       
+                                   FontFamily="{TemplateBinding FontFamily}"
+                                   Focusable="False" 
+                                   HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                   FontSize="{TemplateBinding FontSize}"
+                                   Margin="5"
+                                   SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
+                                   VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+
+                        </Grid>
+                        <Border.BorderBrush >
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,0" x:Name="borderbrush">
+                                <GradientStop Offset="0.0" x:Name="grdstart" Color="Transparent" />
+                                <GradientStop Offset="0.3" x:Name="grd1" Color="Transparent" />
+                                <GradientStop Offset="0.7" x:Name="grd2" Color="Transparent" />
+                                <GradientStop Offset="1.0" x:Name="grdend" Color="Transparent" />
+                            </LinearGradientBrush>
+                        </Border.BorderBrush>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <EventTrigger RoutedEvent="MouseEnter">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation To="{StaticResource BackgroundOrange}" Duration="0:0:0.4" Storyboard.TargetProperty="Color" Storyboard.TargetName="grd1"/>
+                                    <ColorAnimation To="{StaticResource BackgroundOrange}" Duration="0:0:0.4" Storyboard.TargetProperty="Color" Storyboard.TargetName="grd2"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="MouseLeave">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation To="Transparent" Duration="0:0:0.2" Storyboard.TargetProperty="Color" Storyboard.TargetName="grdstart"/>
+                                    <ColorAnimation To="Transparent" Duration="0:0:0.2" Storyboard.TargetProperty="Color" Storyboard.TargetName="grdend"/>
+                                    <ColorAnimation To="Transparent" Duration="0:0:0.4" Storyboard.TargetProperty="Color" Storyboard.TargetName="grd1"/>
+                                    <ColorAnimation To="Transparent" Duration="0:0:0.4" Storyboard.TargetProperty="Color" Storyboard.TargetName="grd2"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Trigger.Setters>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource BackgroundBlueBrush}" />
+                            </Trigger.Setters>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Trigger.Setters>
+                                <Setter Property="BorderBrush" TargetName="border" Value="Transparent" />
+                            </Trigger.Setters>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>

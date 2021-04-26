@@ -35,12 +35,14 @@
                                    Foreground="{StaticResource ForegroundMainBrush}"
                                        />
 
-                            <TextBox Text="{Binding Email}" Tag="Почта"/>
+                            <TextBox local:IsFocusedProperty.Value="True"
+                                Text="{Binding Email}" Tag="Почта"/>
 
                             <PasswordBox x:Name="PasswordText" Tag="Пароль" Margin="0 0 0 30"/>
 
                             <Button Content="Регистрация" 
                                     Padding="20 10"
+                                    IsDefault="True"
                                     Margin="40 20 40 0"
                                     local:IsBusyProperty.Value="{Binding RegisterIsRunning}"
                                     Command="{Binding RegisterCommand}"

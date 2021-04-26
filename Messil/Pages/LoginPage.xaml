@@ -35,7 +35,9 @@
                                    Foreground="{StaticResource ForegroundMainBrush}"
                                        />
 
-                            <TextBox Text="{Binding Email}" Tag="Почта"/>
+                            <TextBox Text="{Binding Email}" 
+                                     Tag="Почта"
+                                     local:IsFocusedProperty.Value="True"/>
 
                             <PasswordBox x:Name="PasswordText" Tag="Пароль" Margin="0 0 0 30"/>
 
@@ -47,7 +49,8 @@
                                         ElementName=Page}"
                                     />
 
-                            <Button Style="{StaticResource TextButton}" 
+                            <Button Style="{StaticResource TextButton}"
+                                    IsDefault="True"
                                     Margin="0"
                                     FontSize="{StaticResource FontSizeMedium}"
                                     Foreground="{StaticResource ForegroundMainBrush}"  

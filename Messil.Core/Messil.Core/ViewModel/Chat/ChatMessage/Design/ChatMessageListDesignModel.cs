@@ -36,8 +36,9 @@ namespace Messil.Core
                 new ChatMessageListItemViewModel
                 {
                     SenderName = "Developer",
-                    Message = "Какой IP адрес сервера? Он не поменялся?",
+                    Message = "Какой IP адрес сервера? Он изменился?",
                     MessageSentTime = DateTimeOffset.UtcNow,
+                    MessageReadTime = DateTimeOffset.UtcNow,
                     SendByMe = true,
                 },
                 

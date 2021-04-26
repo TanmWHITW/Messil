@@ -10,4 +10,9 @@ namespace Messil
     public class IsBusyProperty : BaseAttachedProperty<IsBusyProperty, bool>
     {
     }
+
+    public class IsSelectedProperty : BaseAttachedProperty<IsSelectedProperty, bool>
+    {
+        
+    }
 }

@@ -70,6 +70,7 @@
                            Text="{Binding MessageReadTime, Converter={local:TimeToReadTimeConverter}}"
                            Foreground="{StaticResource ForegroundMainBrush}" 
                            FontSize="{StaticResource FontSizeSmall}"    
+                    Visibility="Visible"
                            />
             </StackPanel>
 

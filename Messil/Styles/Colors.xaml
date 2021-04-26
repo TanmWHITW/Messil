@@ -38,5 +38,7 @@
 
     <Color x:Key="ForegroundVeryDark">#000000</Color>
     <SolidColorBrush x:Key="ForegroundVeryDarkBrush" Color="{StaticResource ForegroundVeryDark}" />
+    <Color x:Key="BackgroundTransparent">Transparent</Color>
+    <SolidColorBrush x:Key="BackgroundTransparentBrush" Color="{StaticResource BackgroundTransparent}" />
 
 </ResourceDictionary>

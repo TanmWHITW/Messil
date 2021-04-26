@@ -46,4 +46,8 @@
     <system:String x:Key="FontAwesomeChatIcon">&#xf086;</system:String>
     <system:String x:Key="FontAwesomeSettingsIcon">&#xf013;</system:String>
     <system:String x:Key="FontAwesomeSigOutIcon">&#xf08b;</system:String>
+    <system:String x:Key="FontAwesomePaperClipIcon">&#xf0c6;</system:String>
+    <system:String x:Key="FontAwesomeSmileIcon">&#xf118;</system:String>
+    <system:String x:Key="FontAwesomePaperPlaneIcon">&#xf1d8;</system:String>
+
 </ResourceDictionary>

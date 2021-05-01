@@ -32,7 +32,7 @@
 
                                 <!-- Window border and dropshadown -->
                                 <Border CornerRadius="{Binding WindowCornerRadius, FallbackValue=10}"
-                                    Background="{Binding ForegroundLightBrush, FallbackValue=White}">
+                                        Background="{Binding ForegroundLightBrush, FallbackValue=White}">
                                     <Border.Effect>
                                         <DropShadowEffect ShadowDepth="0" Opacity="0.2" />
                                     </Border.Effect>
@@ -78,7 +78,8 @@
                                         <Button Style="{StaticResource SystemIconButton}" Command="{Binding MenuCommand}" />
 
                                         <!-- Title -->
-                                        <Viewbox Grid.Column="1" HorizontalAlignment="Left">
+                                        <Viewbox Grid.Column="1" 
+                                                 HorizontalAlignment="Left">
                                             <StackPanel Margin="0 6">
                                                 <TextBlock FontFamily="{StaticResource UbuntuMono}">
                                                     <Run Text="M" Foreground="#e01e5a"/><Run Text="e" Foreground="{StaticResource BackgroundBlueBrush}"/><Run Text="s" Foreground="{StaticResource BackgroundOrangeBrush}"/><Run Text="s" Foreground="{StaticResource BackgroundOrangeBrush}"/><Run Text="i" Foreground="#2eb67d"/><Run Text="l" Foreground="{StaticResource BackgroundBlueBrush}"/>
@@ -87,7 +88,8 @@
                                         </Viewbox>
 
                                         <!-- Window Buttons -->
-                                        <StackPanel Grid.Column="3" Orientation="Horizontal">
+                                        <StackPanel Grid.Column="3" 
+                                                    Orientation="Horizontal">
                                             <Button Command="{Binding MinimizeCommand}" Style="{StaticResource WindowControlButton}" Content="_" />
                                             <Button Command="{Binding MaximizeCommand}" Style="{StaticResource WindowControlButton}" Content="[ ]" />
                                             <Button Command="{Binding CloseCommand}" Style="{StaticResource WindowCloseButton}" Content="X" />
@@ -95,7 +97,12 @@
 
                                     </Grid>
 
-                                    <Border Grid.Row="1" Height="5" BorderThickness="0 0.2 0 0">
+                                    <!-- Drop shadow effect with underline -->
+                                    <Border Grid.Row="1" 
+                                            Height="5" 
+                                            BorderThickness="0 0.2 0 0"
+                                            Panel.ZIndex="1">
+                                        
                                         <!-- Underline -->
                                         <Border.BorderBrush>
                                             <LinearGradientBrush StartPoint="0,0" EndPoint="1, 0">
@@ -115,7 +122,11 @@
 
                                     </Border>
 
-                                    <Border Grid.Row="2" Padding="{Binding InnerContentPadding, FallbackValue=0}" ClipToBounds="True">
+                                    <!-- Main Content container -->
+                                    <Border Grid.Row="1"
+                                            Grid.RowSpan="2"  
+                                            Padding="{Binding InnerContentPadding, FallbackValue=0}" 
+                                            ClipToBounds="True">
                                         <ContentPresenter Content="{TemplateBinding Content}" />
                                     </Border>
                                 </Grid>
@@ -128,6 +139,7 @@
             </Setter>
         </Style>
     </Window.Resources>
+    
     <WindowChrome.WindowChrome>
         <WindowChrome
             ResizeBorderThickness="{Binding ResizeBorderThickness}"
@@ -137,28 +149,37 @@
             />
     </WindowChrome.WindowChrome>
 
-
+    <!-- Main content description -->
     <Border Background="{StaticResource BackgroundVeryLightBrush}">
-        <Grid >
+        <Grid>
+            
+            <!-- Side Menu and the frame (we always have side menu on the screen (if we are logged in) -->
+            <!-- so we have to have a specific column for that -->
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
+            <!-- Side Menu with Visibility Converter -->
+            <local:SideBarControl Width="73" 
+                                  local:AnimateSlideInFromLeftProperty.Value="{Binding ApplicationViewModel.SideMenuVisible, 
+                                                                               Source={x:Static local:ViewModelLocator.Instance}}"
+                                  HorizontalAlignment="Left" Panel.ZIndex="1"
+                                  />
 
-            <local:SideBarControl Width="73" local:AnimateSlideInFromLeftProperty.Value="{Binding ApplicationViewModel.SideMenuVisible, 
-                  Source={x:Static local:ViewModelLocator.Instance}}"
-                                      HorizontalAlignment="Left" Panel.ZIndex="1"
-                                      />
-
+            <!-- Main frame with actual content (LoginPage.xaml is a default page when you load the app)-->
+            <!-- but it can be skipped if you have already logged in some time ago -->
             <Border Grid.Column="1">
                 <Grid>
+                    
+                    <!-- Current page Binding -->
                     <local:PageHost  
                        d:DataContext=""
                        DataContext="{Binding ApplicationViewModel.CurrentPage, 
                                      Source={x:Static local:ViewModelLocator.Instance},  
                                      Converter={local:ApplicationPageValueConverter}}"
-                       CurrentPage="{Binding}" />
+                       CurrentPage="{Binding}" 
+                        />
                 </Grid>
             </Border>
 

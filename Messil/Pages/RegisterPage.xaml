@@ -12,55 +12,86 @@
 
     <Border>
         <Grid>
-
             <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                
+                <!-- Default container for register border 
+                and the button that navigates us to LoginPage.xaml -->
                 <StackPanel
-                    HorizontalAlignment="Center" VerticalAlignment="Center"
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center"
                     TextBlock.TextAlignment="Center">
-                    <Border Background="{StaticResource ForegroundVeryLightBrush}"
-                            CornerRadius="10"
-                            Padding="15 50 15 15"
-                            Width="330"
-                            Margin="50 30 50 0"
-                            BorderThickness="2"
-                            >
-                        <StackPanel>
-                            <TextBlock Text="Зарегестрируйся" 
-                                       FontSize="{StaticResource FontSizeXXLarge}"
-                                       Foreground="{StaticResource BackgroundBlueBrush}"
-                                       
-                                   />
-                            <TextBlock Text="Зарегистрируй корпоративный аккаунт"                                Margin="0 2 0 35"    
-                                   FontSize="{StaticResource FontSizeMedium}"
-                                   Foreground="{StaticResource ForegroundMainBrush}"
-                                       />
+                    
+                    <!-- Grid to create an extra container for having a drop shadow effect -->
+                    <Grid Width="330"
+                          Margin="50 30 50 0">
+                        
+                        <!-- Drop shadow effect for the login form -->
+                        <Border CornerRadius="10" 
+                                Margin="1"
+                                Background="{StaticResource ForegroundMainBrush}"
+                                Height="{Binding RelativeSource={RelativeSource TemplatedParent}}">
 
-                            <TextBox local:IsFocusedProperty.Value="True"
-                                Text="{Binding Email}" Tag="Почта"/>
+                            <Border.Effect>
+                                <DropShadowEffect BlurRadius="40" Opacity="0.25" Color="{StaticResource ForegroundMain}" />
+                            </Border.Effect>
+                        </Border>
 
-                            <PasswordBox x:Name="PasswordText" Tag="Пароль" Margin="0 0 0 30"/>
+                        <!-- Container for register form -->
+                        <Border Background="{StaticResource ForegroundVeryLightBrush}"
+                                CornerRadius="10"
+                                Padding="15 50 15 15"
+                                >
+                            
+                            <!-- We do not need grid, just add some Margin properties -->
+                            <StackPanel>
 
-                            <Button Content="Регистрация" 
-                                    Padding="20 10"
-                                    IsDefault="True"
-                                    Margin="40 20 40 0"
-                                    local:IsBusyProperty.Value="{Binding RegisterIsRunning}"
-                                    Command="{Binding RegisterCommand}"
-                                    CommandParameter="{Binding ElementName=Page}" 
-                                    HorizontalAlignment="Center" />
+                                <!-- Header text -->
+                                <TextBlock Text="Зарегестрируйся" 
+                                           FontSize="{StaticResource FontSizeXXLarge}"
+                                           Foreground="{StaticResource BackgroundBlueBrush}"                                          
+                                           />
 
-                            <TextBlock Padding="0 10 0 10"
-                                    FontSize="{StaticResource FontSizeMedium}"
-                                    Foreground="{StaticResource ForegroundMainBrush}"  
-                                    Text="Используйте домен domain.ru" 
-                                    />
+                                <!-- Header 2 text -->
+                                <TextBlock Text="Зарегистрируй корпоративный аккаунт"                                Margin="0 2 0 35"    
+                                           FontSize="{StaticResource FontSizeMedium}"
+                                           Foreground="{StaticResource ForegroundMainBrush}"
+                                           />
 
-                        </StackPanel>
-                        <Border.BorderBrush>
-                            <SolidColorBrush Opacity="0.08" Color="{StaticResource ForegroundMain}" />
-                        </Border.BorderBrush>
-                    </Border>
+                                <!-- Input box for Email with the soecific style -->
+                                <TextBox local:IsFocusedProperty.Value="True"
+                                         Text="{Binding Email}" 
+                                         Tag="Почта"
+                                         />
+                                
+                                <!-- Input box for Password with the specific style -->
+                                <PasswordBox x:Name="PasswordText" 
+                                             Tag="Пароль" 
+                                             Margin="0 0 0 30"
+                                             />
+                                
+                                <!-- Register button that creates a new account -->
+                                <Button Content="Регистрация" 
+                                        Padding="20 10"
+                                        IsDefault="True"
+                                        Margin="40 20 40 0"
+                                        local:IsBusyProperty.Value="{Binding RegisterIsRunning}"
+                                        Command="{Binding RegisterCommand}"
+                                        CommandParameter="{Binding ElementName=Page}" 
+                                        HorizontalAlignment="Center" 
+                                        />
 
+                                <!-- Info text block that says us what corporative domain 
+                                you should use to create an account in the system -->
+                                <TextBlock Padding="0 10 0 10"
+                                           FontSize="{StaticResource FontSizeMedium}"
+                                           Foreground="{StaticResource ForegroundMainBrush}"  
+                                           Text="Используйте домен domain.ru" 
+                                        />
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+
+                    <!-- the button that navigates us to LoginPage.xaml-->
                     <Button Style="{StaticResource TextButton}" 
                             Content="У меня уже есть аккаунт"
                             HorizontalAlignment="Center"

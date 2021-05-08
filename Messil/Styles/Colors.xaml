@@ -3,6 +3,39 @@
                     xmlns:local="clr-namespace:Messil">
 
 
+    <Color x:Key="BackgroundWhite">#fff</Color>
+    <SolidColorBrush x:Key="BackgroundWhiteBrush" Color="{StaticResource BackgroundWhite}" />
+
+    <Color x:Key="BackgroundBlack">#000</Color>
+    <SolidColorBrush x:Key="BackgroundBlackBrush" Color="{StaticResource BackgroundBlack}" />
+
+    <Color x:Key="BackgroundGray100">#f7fafc</Color>
+    <SolidColorBrush x:Key="BackgroundGray100Brush" Color="{StaticResource BackgroundGray100}" />
+
+    <Color x:Key="BackgroundGray200">#edf2f7</Color>
+    <SolidColorBrush x:Key="BackgroundGray200Brush" Color="{StaticResource BackgroundGray200}" />
+
+    <Color x:Key="BackgroundGray300">#e2e8f0</Color>
+    <SolidColorBrush x:Key="BackgroundGray300Brush" Color="{StaticResource BackgroundGray300}" />
+    
+    <Color x:Key="BackgroundGray400">#cbd5e0</Color>
+    <SolidColorBrush x:Key="BackgroundGray400Brush" Color="{StaticResource BackgroundGray400}" />
+
+    <Color x:Key="BackgroundGray500">#a0aec0</Color>
+    <SolidColorBrush x:Key="BackgroundGray500Brush" Color="{StaticResource BackgroundGray500}" />
+
+    <Color x:Key="BackgroundGray600">#718096</Color>
+    <SolidColorBrush x:Key="BackgroundGray600Brush" Color="{StaticResource BackgroundGray600}" />
+
+    <Color x:Key="BackgroundGray700">#f1f1f1</Color>
+    <SolidColorBrush x:Key="BackgroundGray700Brush" Color="{StaticResource BackgroundGray700}" />
+
+    <Color x:Key="BackgroundGray800">#2d3748</Color>
+    <SolidColorBrush x:Key="BackgroundGray800Brush" Color="{StaticResource BackgroundGray800}" />
+
+    <Color x:Key="BackgroundGray900">#1a202c</Color>
+    <SolidColorBrush x:Key="BackgroundGray900Brush" Color="{StaticResource BackgroundGray900}" />
+
     <Color x:Key="BackgroundLight">#f1f1f1</Color>
     <SolidColorBrush x:Key="BackgroundLightBrush" Color="{StaticResource BackgroundLight}" />
 

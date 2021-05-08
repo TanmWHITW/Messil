@@ -14,101 +14,95 @@
                     <ControlTemplate TargetType="{x:Type ContentControl}">
                         <Border
                                 x:Name="background"
-                                Margin="0 0 0 4"
-                                CornerRadius="10">
-                            <Border.Background>
-                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                                    <GradientStop Color="{StaticResource BackgroundVeryLight}" x:Name="gradient" Offset="0.0" />
-                                    <GradientStop Color="{StaticResource BackgroundVeryLight}" Offset="1.0" />
-                                </LinearGradientBrush>
-                            </Border.Background>
+                                Background="{StaticResource BackgroundWhiteBrush}">
                             <Border x:Name="container" 
                                     Background="Transparent"
-                                    CornerRadius="10">
+                                    BorderThickness="0 0 0 1"
+                                    Padding="6 2 4 2"
+                                    BorderBrush="{StaticResource BackgroundGray300Brush}">
                                 <Grid   
                                     d:DataContext="{x:Static core:ChatListItemDesignModel.Instance}">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="Auto" />
-                                </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
 
-                                <Border Padding="11 11" CornerRadius="10 0 0 10">
-                                    <Border Background="{Binding ProfilePictureRGB, Converter={local:StingRGBToBrushConverter}}" 
-                                            Height="45"    
-                                            Width="{Binding ActualHeight, RelativeSource={RelativeSource Self}}"
-                                                CornerRadius="{Binding ActualHeight, RelativeSource={RelativeSource Self}}"
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Border Padding="10" CornerRadius="10 0 0 10">
+                                            <Border Background="{Binding ProfilePictureRGB, Converter={local:StingRGBToBrushConverter}}" 
+                                                    Height="36"    
+                                                    Width="{Binding ActualHeight, RelativeSource={RelativeSource Self}}"
+                                                    CornerRadius="{Binding ActualHeight, RelativeSource={RelativeSource Self}}"
                                                   >
-                                        <TextBlock Text="{Binding Initials}"
+                                                <TextBlock Text="{Binding Initials}"
                                                        VerticalAlignment="Center"
                                                        HorizontalAlignment="Center"
                                                        FontFamily="{StaticResource RobotoLight}"
                                                        Foreground="{StaticResource ForegroundVeryLightBrush}"
-                                                       FontSize="{StaticResource FontSizeLarge}" />
-                                    </Border>
-                                </Border>
+                                                       FontSize="{StaticResource FontSizeMedium}" />
+                                            </Border>
+                                        </Border>
 
-                                <Border Grid.Column="1" Padding="0 0 8 0" CornerRadius="0 10 10 0">
-                                    <StackPanel VerticalAlignment="Center">
-                                        <TextBlock Text="{Binding Name}" 
-                                                   TextTrimming="CharacterEllipsis"
-                                                   FontFamily="{StaticResource RobotoRegular}"
-                                                   Foreground="{StaticResource BackgroundBlueBrush}"
-                                                   FontSize="{StaticResource FontSizeRegular}"
-                                                   Padding="0 0 0 3"
+                                        <Border Grid.Column="1"
+                                                VerticalAlignment="Center"
+                                                Margin="5">
+                                            <TextBlock Text="{Binding Name}" 
+                                                       TextTrimming="CharacterEllipsis"
+                                                       FontFamily="{StaticResource RobotoRegular}"
+                                                       Foreground="{StaticResource BackgroundBlueDarkBrush}"
+                                                       FontSize="{StaticResource FontSizeRegular}"
+                                                       Padding="0 0 0 5"
                                                         />
-                                        <TextBlock Text="{Binding Message}" 
-                                                   Padding="0 3 0 0"
+                                        </Border>
+                                        <Border Grid.Column="2" Background="{StaticResource BackgroundBlueDarkBrush}"
+                                                Height="7"
+                                                Margin="11"
+                                                Width="{Binding ActualHeight, RelativeSource={RelativeSource Self}}"
+                                                CornerRadius="{Binding ActualHeight, RelativeSource={RelativeSource Self}}"
+                                                Visibility="{Binding NewContentAvailable, Converter={local:BooleanToVisiblityCollapsedConverter}, ConverterParameter=True}"
+                                                />
+
+                                    </Grid>
+                                    <Border Grid.Row="1"
+                                            Margin="11 11 11 6">
+                                    <TextBlock Text="{Binding Message}" 
+                                                   Padding="0 5 0 0"
                                                    TextTrimming="CharacterEllipsis"
                                                    FontFamily="{StaticResource RobotoRegular}"
                                                    FontSize="{StaticResource FontSizeRegular}"
                                                    Foreground="{StaticResource ForegroundMainBrush}"
                                                          />
-                                    </StackPanel>
-                                </Border>
-                                <Border Grid.Column="2" Background="{StaticResource BackgroundBlueDarkBrush}"
-                                            Height="7"
-                                            Margin="7 0 10 0"
-                                            Width="{Binding ActualHeight, RelativeSource={RelativeSource Self}}"
-                                            CornerRadius="{Binding ActualHeight, RelativeSource={RelativeSource Self}}"
-                                            Visibility="{Binding NewContentAvailable, Converter={local:BooleanToVisiblityCollapsedConverter}, ConverterParameter=True}"/>
-
-
+                                    </Border>
                                 </Grid>
                             </Border>
                         </Border>
 
                         <ControlTemplate.Triggers>
-                            
                             <DataTrigger Binding="{Binding IsSelected}" Value="True">
-                                <Setter Property="Background" TargetName="background">
-                                    <Setter.Value>
-                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                                            <GradientStop Color="{StaticResource BackgroundVeryLightBlue}" Offset="0.0" />
-                                            <GradientStop Color="{StaticResource BackgroundVeryLight}" Offset="1.0" />
-                                        </LinearGradientBrush>
-                                    </Setter.Value>
-                                </Setter>
-                                <Setter Property="IsEnabled" Value="False" />
-                                <Setter Property="Margin" TargetName="background" Value="10 0 0 4" />
-                            </DataTrigger>
-                            
-                            <EventTrigger RoutedEvent="MouseEnter">
-                                <BeginStoryboard>
-                                    <Storyboard>
-                                        <ColorAnimation To="{StaticResource BackgroundVeryLightBlue}" Duration="0:0:0.2" Storyboard.TargetName="gradient" Storyboard.TargetProperty="Color" />
-                                        <ThicknessAnimation To="10 0 0 4" Duration="0:0:0.2" Storyboard.TargetName="background" Storyboard.TargetProperty="Margin" />
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </EventTrigger>
+                                <Setter Property="Background" TargetName="background" Value="{StaticResource BackgroundVeryLightBlueBrush}"/>
+                                </DataTrigger>
+
+                                <EventTrigger RoutedEvent="MouseEnter">
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                        <ColorAnimation To="{StaticResource BackgroundVeryLightBlue}" Duration="0:0:0.3" Storyboard.TargetName="container" Storyboard.TargetProperty="Background.Color" />
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
                             <EventTrigger RoutedEvent="MouseLeave">
                                 <BeginStoryboard>
                                     <Storyboard>
-                                        <ColorAnimation To="{StaticResource BackgroundVeryLight}" Duration="0:0:0.2" Storyboard.TargetName="gradient" Storyboard.TargetProperty="Color" />
-                                        <ThicknessAnimation To="0 0 0 4" Duration="0:0:0.2" Storyboard.TargetName="background" Storyboard.TargetProperty="Margin" />
+                                        <ColorAnimation To="Transparent" Duration="0:0:0.3" Storyboard.TargetName="container" Storyboard.TargetProperty="Background.Color" />
                                     </Storyboard>
                                 </BeginStoryboard>
                             </EventTrigger>
+
                         </ControlTemplate.Triggers>
                         
                     </ControlTemplate>

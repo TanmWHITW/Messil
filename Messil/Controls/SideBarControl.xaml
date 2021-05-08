@@ -6,23 +6,45 @@
              xmlns:core="clr-namespace:Messil.Core;assembly=Messil.Core"             
              xmlns:local="clr-namespace:Messil"
              mc:Ignorable="d" 
-             d:DesignHeight="500" d:DesignWidth="73">
+             d:DesignHeight="500" d:DesignWidth="63">
     <UserControl.Template>
         <ControlTemplate>
-            <Border Background="{StaticResource BackgroundBlueBrush}" 
-                    Margin="10 5 5 5"
-                    CornerRadius="10"
-                    ClipToBounds="True">
-                <Grid>
-                    <StackPanel>
-                        <Button Style="{StaticResource SidebarButtonTop}" Content="{StaticResource FontAwesomeUserIcon}" Tag="10 10 0 0"/>
-                        <Button Style="{StaticResource SidebarButton}" Content="{StaticResource FontAwesomeChatIcon}" />
-                        <Button Style="{StaticResource SidebarButton}" Content="{StaticResource FontAwesomeMailIcon}" />
-                        <Button Style="{StaticResource SidebarButton}" Content="{StaticResource FontAwesomeSettingsIcon}" />
-                    </StackPanel>
-                    <Button Style="{StaticResource SidebarButtonBottom}" Content="{StaticResource FontAwesomeSigOutIcon}" Margin="0" VerticalAlignment="Bottom"/>
-                </Grid>
-            </Border>
+
+            <Grid>
+
+                <Border Background="{StaticResource BackgroundGray200Brush}" 
+                        ClipToBounds="True">
+                    
+                    <Grid>
+                        <StackPanel>
+                            
+
+                            <Button Style="{StaticResource SidebarButton}"
+                                    Content="{StaticResource LineIconsUserIcon}"
+                                    Width="{TemplateBinding ActualWidth}"
+                                    />
+
+                            <Button Style="{StaticResource SidebarButton}"
+                                    Content="{StaticResource LineIconsChatIcon}"
+                                    Width="{TemplateBinding ActualWidth}"
+                                    Foreground="{StaticResource BackgroundBlueBrush}"
+                                    Background="{StaticResource BackgroundGray100Brush}"
+                                    />
+
+                            <Button Style="{StaticResource SidebarButton}"
+                                    Content="{StaticResource LineIconsMailIcon}"
+                                    Width="{TemplateBinding ActualWidth}"
+                                    />
+                        </StackPanel>
+
+                        <Button Style="{StaticResource SidebarButton}"
+                                Width="{TemplateBinding ActualWidth}"
+                                Content="{StaticResource LineIconsSettingsIcon}"
+                                VerticalAlignment="Bottom"
+/>
+                    </Grid>
+                </Border>
+            </Grid>
         </ControlTemplate>
     </UserControl.Template>
 </UserControl>

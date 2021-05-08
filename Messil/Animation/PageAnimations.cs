@@ -31,9 +31,9 @@ namespace Messil
 
             sb.Begin(page);
 
-            await Task.Delay((int)(seconds * 1000));
+            page.Visibility = Visibility.Visible;
 
-            page.Visibility = Visibility.Hidden;
+            await Task.Delay((int)(seconds * 1000));
 
         }
     }

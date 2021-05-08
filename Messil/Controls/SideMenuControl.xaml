@@ -6,63 +6,55 @@
              xmlns:core="clr-namespace:Messil.Core;assembly=Messil.Core"             
              xmlns:local="clr-namespace:Messil"
              mc:Ignorable="d" 
-             d:DesignHeight="600" d:DesignWidth="300">
+             d:DesignHeight="600" d:DesignWidth="330">
     <UserControl.Template >
         <ControlTemplate TargetType="UserControl">
-            <Border Padding="5 5 4 5" 
-                    BorderThickness="0 0 1 0">
-                <Border.BorderBrush>
-                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                        <GradientStop Color="Transparent" Offset="0.0" />
-                        <GradientStop Color="{StaticResource BackgroundLight}" Offset="0.2" />
-                        <GradientStop Color="{StaticResource BackgroundLight}" Offset="0.8" />
-                        <GradientStop Color="Transparent" Offset="1.0" />
-                    </LinearGradientBrush>
-                </Border.BorderBrush>
+            <Border Background="{StaticResource BackgroundGray100Brush}">
                 <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="48" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
 
-                    <Border CornerRadius="10"
-                            HorizontalAlignment="Center" 
-                            Background="{StaticResource BackgroundLighterBrush}"
-                            Margin="8"
-                            Padding="2">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBox      Width="230" 
-                                          Style="{StaticResource SearchBox}" 
-                                          Tag="Поиск по приложению ..." />
-                                
-                            <Button HorizontalAlignment="Right"
-                                    Style="{StaticResource SearchIconButton}"
-                                    Content="{StaticResource FontAwesomeSearchIcon}" 
-                                    />
-                        </StackPanel>
+                    <!-- Drop shadow effect for the login form -->
+                    <Border Background="{StaticResource BackgroundBlackBrush}"
+                            CornerRadius="10"
+                            Margin="1"
+                            Height="{Binding RelativeSource={RelativeSource TemplatedParent}}">
+
+                        <Border.Effect>
+                            <DropShadowEffect BlurRadius="40" Opacity="0.1" Direction="-180" />
+                        </Border.Effect>
                     </Border>
+                    <!-- the container for border from the right -->
+                    <Border Padding="0 5" 
+                    CornerRadius="10 0 0 0"
+                    BorderThickness="0 0 1 0"
+                    BorderBrush="{StaticResource BackgroundGray300Brush}"
+                    Background="{StaticResource BackgroundWhiteBrush}"
+                    >
 
-                    <Border Grid.Row="1" >
-                        <StackPanel Orientation="Horizontal" 
-                                    HorizontalAlignment="Center"
-                                    Margin="5 5 5 10">
-                            <Button Style="{StaticResource SelectChatTypeButton}"                  
-                                    Content="Чаты"
-                                    IsEnabled="False"
-                                    />
-                            <Button Style="{StaticResource SelectChatTypeButton}"                                    
-                                    Content="Группы" 
-                                    
-                                    />
-                        </StackPanel>
+                        <!-- the main container (grid) -->
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+
+
+                            <Border>
+                                <TextBlock Style="{StaticResource HeaderText}"
+                                           Text="Личные сообщения"
+                                           FontFamily="{StaticResource RobotoBold}"
+                                           FontSize="{StaticResource FontSizeLarge}"
+                                           Foreground="{StaticResource ForegroundVeryDarkBrush}"
+                                           Margin="0 10"
+                                           />
+                            </Border>
+
+                            <Border Grid.Row="2">
+                                <local:ChatListControl />
+                            </Border>
+
+                        </Grid>
                     </Border>
-
-
-                    <Border Grid.Row="2">
-                        <local:ChatListControl />
-                    </Border>
-
                 </Grid>
             </Border>
         </ControlTemplate>

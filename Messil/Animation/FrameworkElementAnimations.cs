@@ -17,13 +17,13 @@ namespace Messil
         /// <param name="seconds">The time the animation will take</param>
         /// <param name="keepMargin">Whether to keep the element at the same width during animation</param>
         /// <returns></returns>
-        public static async Task SlideAndFadeInFromRightAsync(this FrameworkElement element, float seconds = 0.3f, bool keepMargin = true)
+        public static async Task SlideAndFadeInFromRightAsync(this FrameworkElement element, float seconds = 0.3f, bool keepMargin = true, int width = 0)
         {
             // Create the storyboard
             var sb = new Storyboard();
 
             // Add slide from right animation
-            sb.AddSlideFromRight(seconds, element.ActualWidth, keepMargin: keepMargin);
+            sb.AddSlideFromRight(seconds, width == 0 ? element.ActualWidth : width, keepMargin: keepMargin);
 
             // Add fade in animation
             sb.AddFadeIn(seconds);
@@ -32,7 +32,7 @@ namespace Messil
             sb.Begin(element);
 
             // Make page visible
-            element.Visibility = Visibility.Collapsed;
+            element.Visibility = Visibility.Visible;
 
             // Wait for it to finish
             await Task.Delay((int)(seconds * 1000));
@@ -45,13 +45,13 @@ namespace Messil
         /// <param name="seconds">The time the animation will take</param>
         /// <param name="keepMargin">Whether to keep the element at the same width during animation</param>
         /// <returns></returns>
-        public static async Task SlideAndFadeInFromLeftAsync(this FrameworkElement element, float seconds = 0.3f, bool keepMargin = true)
+        public static async Task SlideAndFadeInFromLeftAsync(this FrameworkElement element, float seconds = 0.3f, bool keepMargin = true, int width = 0)
         {
             // Create the storyboard
             var sb = new Storyboard();
 
             // Add slide from right animation
-            sb.AddSlideFromLeft(seconds, element.ActualWidth, keepMargin: keepMargin);
+            sb.AddSlideFromLeft(seconds, width == 0 ? element.ActualWidth : width, keepMargin: keepMargin);
 
             // Add fade in animation
             sb.AddFadeIn(seconds);
@@ -73,13 +73,13 @@ namespace Messil
         /// <param name="seconds">The time the animation will take</param>
         /// <param name="keepMargin">Whether to keep the element at the same width during animation</param>
         /// <returns></returns>
-        public static async Task SlideAndFadeOutToLeftAsync(this FrameworkElement element, float seconds = 0.3f, bool keepMargin = true)
+        public static async Task SlideAndFadeOutToLeftAsync(this FrameworkElement element, float seconds = 0.3f, bool keepMargin = true, int width = 0)
         {
             // Create the storyboard
             var sb = new Storyboard();
 
             // Add slide from right animation
-            sb.AddSlideToLeft(seconds, element.ActualWidth, keepMargin: keepMargin);
+            sb.AddSlideToLeft(seconds, width == 0 ? element.ActualWidth : width, keepMargin: keepMargin);
 
             // Add fade in animation
             sb.AddFadeOut(seconds);
@@ -101,13 +101,13 @@ namespace Messil
         /// <param name="seconds">The time the animation will take</param>
         /// <param name="keepMargin">Whether to keep the element at the same width during animation</param>
         /// <returns></returns>
-        public static async Task SlideAndFadeOutToRightAsync(this FrameworkElement element, float seconds = 0.3f, bool keepMargin = true)
+        public static async Task SlideAndFadeOutToRightAsync(this FrameworkElement element, float seconds = 0.3f, bool keepMargin = true, int width = 0)
         {
             // Create the storyboard
             var sb = new Storyboard();
 
             // Add slide from right animation
-            sb.AddSlideToRight(seconds, element.ActualWidth, keepMargin: keepMargin);
+            sb.AddSlideToRight(seconds, width == 0 ? element.ActualWidth : width, keepMargin: keepMargin);
 
             // Add fade in animation
             sb.AddFadeOut(seconds);

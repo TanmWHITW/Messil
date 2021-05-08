@@ -1,4 +1,5 @@
 ﻿using Messil.Core;
+using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -8,7 +9,7 @@ namespace Messil
     /// <summary>
     /// The base page for all pages to gain base functionality
     /// </summary>
-    public class BasePage : Page
+    public class BasePage : ContentControl
     {
         #region Public Properties
 
@@ -42,6 +43,9 @@ namespace Messil
         /// </summary>
         public BasePage()
         {
+            if (DesignerProperties.GetIsInDesignMode(this))
+                return;
+
             // If we are animating in, hide to begin with
             if (PageLoadAnimation != PageAnimation.None)
                 Visibility = Visibility.Collapsed;
@@ -86,7 +90,7 @@ namespace Messil
                 case PageAnimation.SlideAndFadeInFromRight:
 
                     // Start the animation
-                    await this.SlideAndFadeInFromRightAsync(SlideSeconds);
+                    await this.SlideAndFadeInFromRightAsync(SlideSeconds, width: (int)Application.Current.MainWindow.Width);
 
                     break;
             }

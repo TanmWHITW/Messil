@@ -13,6 +13,9 @@
 
     <FontFamily x:Key="FontAwesome">pack://application;,,,/Fonts/#FontAwesome</FontFamily>
 
+    <FontFamily x:Key="LineIcons">pack://application;,,,/Fonts/#LineIcons</FontFamily>
+
+
 
     <Style TargetType="{x:Type Control}" x:Key="BaseStyle">
         <Setter Property="FontFamily" Value="{StaticResource RobotoLight}" />
@@ -34,6 +37,7 @@
 
     <system:Double x:Key="FontSizeLarge">20</system:Double>
     <system:Double x:Key="FontSizeXLarge">24</system:Double>
+    <system:Double x:Key="FontSizeMediumPlus">18</system:Double>
     <system:Double x:Key="FontSizeMedium">16</system:Double>
     <system:Double x:Key="FontSizeRegular">14</system:Double>
     <system:Double x:Key="FontSizeSmall">12</system:Double>
@@ -49,5 +53,17 @@
     <system:String x:Key="FontAwesomePaperClipIcon">&#xf0c6;</system:String>
     <system:String x:Key="FontAwesomeSmileIcon">&#xf118;</system:String>
     <system:String x:Key="FontAwesomePaperPlaneIcon">&#xf1d8;</system:String>
+
+    <system:String x:Key="LineIconsSearchIcon">&#xeb7b;</system:String>
+    <system:String x:Key="LineIconsUserIcon">&#xebde;</system:String>
+    <system:String x:Key="LineIconsMailIcon">&#xeaab;</system:String>
+    <system:String x:Key="LineIconsChatIcon">&#xeb64;</system:String>
+    <system:String x:Key="LineIconsSettingsIcon">&#xea6f;</system:String>
+    <system:String x:Key="LineIconsSigOutIcon">&#xeab0;</system:String>
+    <system:String x:Key="LineIconsPaperClipIcon">&#xeb40;</system:String>
+    <system:String x:Key="LineIconsSmileIcon">&#xeaa4;</system:String>
+    <system:String x:Key="LineIconsPaperPlaneIcon">&#xeab0;</system:String>
+    <system:String x:Key="LineIconsImageIcon">&#xeaeb;</system:String>
+    <system:String x:Key="LineIconsDoubleRightAngleIcon">&#xea12;</system:String>
 
 </ResourceDictionary>

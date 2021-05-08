@@ -12,7 +12,7 @@
         WindowStartupLocation="CenterScreen"
         MinHeight="{Binding WindowMinimumHeight}"
         MinWidth="{Binding WindowMinimumWidth}"
-        Title="Messil" Height="630" Width="900">
+        Title="Messil">
 
     <Window.Resources>
         <Style TargetType="{x:Type local:MainWindow}">
@@ -27,14 +27,14 @@
 
                                 <!-- Opacity mask for corners on grid -->
                                 <Border x:Name="Container"
-                                        Background="{StaticResource BackgroundVeryLightBrush}"
+                                        Background="{StaticResource BackgroundWhiteBrush}"
                                         CornerRadius="{Binding WindowCornerRadius, FallbackValue=10}" />
 
                                 <!-- Window border and dropshadown -->
                                 <Border CornerRadius="{Binding WindowCornerRadius, FallbackValue=10}"
                                         Background="{Binding ForegroundLightBrush, FallbackValue=White}">
                                     <Border.Effect>
-                                        <DropShadowEffect ShadowDepth="0" Opacity="0.2" />
+                                        <DropShadowEffect ShadowDepth="0" Opacity="0.3" />
                                     </Border.Effect>
                                 </Border>
 
@@ -51,16 +51,16 @@
                                         <!-- Title Bar -->
                                         <RowDefinition Height="{Binding TitleHeightGridLength, FallbackValue=48}" />
 
-                                        <!-- Drop Shadow -->
-                                        <RowDefinition Height="Auto" />
-                                        
                                         <!-- Window Content -->
                                         <RowDefinition Height="*" />
 
                                     </Grid.RowDefinitions>
 
                                     <!-- Title Bar -->
-                                    <Grid Grid.Column="0" Panel.ZIndex="1" >
+                                    <Border BorderThickness="0 0 0 0.5"  
+                                            Panel.ZIndex="1"
+                                            BorderBrush="{StaticResource BackgroundGray300Brush}">
+                                    <Grid>
 
                                         <Grid.ColumnDefinitions>
                                             <!-- Icon -->
@@ -75,7 +75,9 @@
                                         </Grid.ColumnDefinitions>
 
                                         <!-- Icon -->
-                                        <Button Style="{StaticResource SystemIconButton}" Command="{Binding MenuCommand}" />
+                                        <Button Style="{StaticResource SystemIconButton}"
+                                                Command="{Binding MenuCommand}" 
+                                                Margin="8 0 0 0"/>
 
                                         <!-- Title -->
                                         <Viewbox Grid.Column="1" 
@@ -96,35 +98,10 @@
                                         </StackPanel>
 
                                     </Grid>
-
-                                    <!-- Drop shadow effect with underline -->
-                                    <Border Grid.Row="1" 
-                                            Height="5" 
-                                            BorderThickness="0 0.2 0 0"
-                                            Panel.ZIndex="1">
-                                        
-                                        <!-- Underline -->
-                                        <Border.BorderBrush>
-                                            <LinearGradientBrush StartPoint="0,0" EndPoint="1, 0">
-                                                <GradientStop Color="{StaticResource BackgroundLight}" Offset="0.0" />
-                                                <GradientStop Color="{StaticResource ForegroundMain}" Offset="0.5" />
-                                                <GradientStop Color="{StaticResource BackgroundLight}" Offset="1.0" />
-                                            </LinearGradientBrush>
-                                        </Border.BorderBrush>
-
-                                        <!-- Drop shadow -->
-                                        <Border.Background>
-                                            <LinearGradientBrush StartPoint="0,0" EndPoint="0, 1">
-                                                <GradientStop Color="{StaticResource BackgroundLight}" Offset="0.0" />
-                                                <GradientStop Color="{StaticResource BackgroundVeryLight}" Offset="1.0" />
-                                            </LinearGradientBrush>
-                                        </Border.Background>
-
                                     </Border>
 
                                     <!-- Main Content container -->
                                     <Border Grid.Row="1"
-                                            Grid.RowSpan="2"  
                                             Padding="{Binding InnerContentPadding, FallbackValue=0}" 
                                             ClipToBounds="True">
                                         <ContentPresenter Content="{TemplateBinding Content}" />
@@ -152,7 +129,7 @@
     <!-- Main content description -->
     <Border Background="{StaticResource BackgroundVeryLightBrush}">
         <Grid>
-            
+
             <!-- Side Menu and the frame (we always have side menu on the screen (if we are logged in) -->
             <!-- so we have to have a specific column for that -->
             <Grid.ColumnDefinitions>
@@ -160,30 +137,32 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
+
             <!-- Side Menu with Visibility Converter -->
-            <local:SideBarControl Width="73" 
-                                  local:AnimateSlideInFromLeftProperty.Value="{Binding ApplicationViewModel.SideMenuVisible, 
+            <local:SideBarControl Width="64" 
+                                  local:AnimateSlideInFromLeftProperty.Value="{Binding ApplicationViewModel.SideBarVisible, 
                                                                                Source={x:Static local:ViewModelLocator.Instance}}"
-                                  HorizontalAlignment="Left" Panel.ZIndex="1"
                                   />
 
             <!-- Main frame with actual content (LoginPage.xaml is a default page when you load the app)-->
             <!-- but it can be skipped if you have already logged in some time ago -->
             <Border Grid.Column="1">
                 <Grid>
-                    
+
                     <!-- Current page Binding -->
-                    <local:PageHost  
-                       d:DataContext=""
-                       DataContext="{Binding ApplicationViewModel.CurrentPage, 
-                                     Source={x:Static local:ViewModelLocator.Instance},  
-                                     Converter={local:ApplicationPageValueConverter}}"
-                       CurrentPage="{Binding}" 
+                    <local:PageHost  d:DataContext=""
+                                     DataContext="{Binding ApplicationViewModel.CurrentPage, 
+                                                   Source={x:Static local:ViewModelLocator.Instance},  
+                                                   Converter={local:ApplicationPageValueConverter}}"
+                                     CurrentPage="{Binding}" 
                         />
                 </Grid>
             </Border>
 
+            <!-- Blue background image -->
+            <Grid.Background>
+                <ImageBrush TileMode="Tile" ViewportUnits="Absolute" Viewport="0 0 400 400" ImageSource="/Images/Background/background.png" />
+            </Grid.Background>
         </Grid>
     </Border>
-
 </Window>

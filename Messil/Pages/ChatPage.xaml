@@ -7,72 +7,105 @@
       xmlns:local="clr-namespace:Messil"  
       mc:Ignorable="d"
       x:Name="Page"
-      d:DesignHeight="700" d:DesignWidth="900"
-      Title="Chat">
+      d:DesignHeight="700" d:DesignWidth="1000"
+      >
 
     <Grid>
+        
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="300" />
+            <ColumnDefinition Width="275"/>
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
+        <local:ExpandedChatMenuControl />
 
-        <Border>
-            <local:SideMenuControl />
-        </Border>
+        <Border Grid.Column="1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="300"/>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
 
-        <Grid Grid.Column="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
+                <Border>
+                    <local:SideMenuControl />
+                </Border>
 
-            <Border Grid.Row="1">
-                <local:ChatMessageListControl />
-            </Border>
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
 
-            <Border Grid.Row="2"
-                    ClipToBounds="True"
-                    Height="50"
-                    Background="{StaticResource BackgroundVeryLightBlueBrush}"
-                    CornerRadius="15"
-                    Opacity="0.9"
-                    Margin="10 5 10 10">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
+                    <Border Grid.Row="1">
+                        <local:ChatMessageListControl />
+                    </Border>
 
-                    <Button Style="{StaticResource SearchIconButton}"
-                            Content="{StaticResource FontAwesomePaperClipIcon}" 
-                            Foreground="{StaticResource BackgroundBlueBrush}"/>
+                    <Border Grid.Row="2"
+                            Background="{StaticResource BackgroundTransparentBrush}"
+                            >
+                        <Grid>
+                            <Border Background="{StaticResource BackgroundBlackBrush}"
+                                    CornerRadius="15"
+                                    Margin="11"
+                                    Height="{Binding RelativeSource={RelativeSource TemplatedParent}}">
 
-                    <TextBox Grid.Column="1"
-                             Style="{StaticResource SearchBox}"
-                             Background="Transparent"
-                             FontSize="{StaticResource FontSizeLarge}"
-                             Tag="Напишите сообщение ..." />
+                                <Border.Effect>
+                                    <DropShadowEffect BlurRadius="20" Opacity="0.15" Direction="-180" />
+                                </Border.Effect>
+                            </Border>
 
-                    <StackPanel Grid.Column="2"
-                                Orientation="Horizontal">
-                        <Button Style="{StaticResource SearchIconButton}"
-                                Height="50"
-                                Content="{StaticResource FontAwesomeSmileIcon}" 
-                                Foreground="{StaticResource BackgroundOrangeBrush}"
-                                />
-                        <Button Style="{StaticResource SearchIconButton}"
-                                Height="50"
-                                Content="{StaticResource FontAwesomePaperPlaneIcon}" 
-                                Padding="13"
-                                Foreground="{StaticResource ForegroundMainBrush}"
-                                />
-                    </StackPanel>
+                            <Border ClipToBounds="True"
+                                    Margin="10"
+                                    CornerRadius="15"
+                                    Background="{StaticResource BackgroundGray100Brush}">
+                                <Grid MinHeight="50"
+                                      MaxHeight="114">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <!-- Attach button -->
+                                    <Button Style="{StaticResource IconGrowButton}"
+                                    Height="{Binding MinHeight, RelativeSource={RelativeSource AncestorType=Grid}}"
+                                    Content="{StaticResource LineIconsPaperClipIcon}"
+                                    Foreground="{StaticResource BackgroundGray600Brush}"
+                                    />
+
+                                    <TextBox Grid.Column="1" 
+                                     Background="{StaticResource BackgroundTransparentBrush}"
+                                     Tag="Напишите сообщение ..."
+                                     FontSize="{StaticResource FontSizeRegular}"
+                                     VerticalAlignment="Center"
+                                     BorderThickness="0"
+                                     Padding="0 10"
+                                     AcceptsReturn="True"
+                                     AcceptsTab="True"
+                                     VerticalScrollBarVisibility="Auto"
+                                     />
+
+                                    <StackPanel Grid.Column="2"
+                                        Orientation="Horizontal">
+                                        <!-- Emoji button -->
+                                        <Button Style="{StaticResource IconGrowButton}"
+                                        Height="{Binding MinHeight, RelativeSource={RelativeSource AncestorType=Grid}}"
+                                        Content="{StaticResource LineIconsSmileIcon}"
+                                        Foreground="{StaticResource BackgroundOrangeBrush}"
+                                        />
+                                        <Button Style="{StaticResource IconGrowButton}"
+                                        Height="{Binding MinHeight, RelativeSource={RelativeSource AncestorType=Grid}}"
+                                        Content="{StaticResource LineIconsDoubleRightAngleIcon}"
+                                        Foreground="{StaticResource BackgroundGray600Brush}"
+                                        />
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
+                        </Grid>
+                    </Border>
                 </Grid>
-            </Border>
-        </Grid>
-
+            </Grid>
+        </Border>
     </Grid>
 </local:BasePage>

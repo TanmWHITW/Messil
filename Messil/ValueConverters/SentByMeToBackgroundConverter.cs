@@ -13,7 +13,7 @@ namespace Messil
     {
         public override object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return (bool)value ? Application.Current.FindResource("BackgroundLightBlueBrush") : Application.Current.FindResource("BackgroundVeryLightBlueBrush");
+            return (bool)value ? Application.Current.FindResource("BackgroundLightBlueBrush") : Application.Current.FindResource("BackgroundGray300Brush");
         }
 
         public override object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

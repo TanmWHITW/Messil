@@ -11,13 +11,13 @@ namespace Messil.Core
 
         public ApplicationPage CurrentPage { get; private set; } = ApplicationPage.Login;
 
-        public bool SideMenuVisible { get; set; } = false;
+        public bool SideBarVisible { get; set; } = false;
 
         public void GoToPage(ApplicationPage page)
         {
             CurrentPage = page;
 
-            SideMenuVisible = page == ApplicationPage.Chat;
+            SideBarVisible = page == ApplicationPage.Chat;
         }
     }
 }
